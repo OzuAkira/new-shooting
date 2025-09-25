@@ -10,8 +10,38 @@ public class enemy_a_bullet : MonoBehaviour
     //’e‚Ì‹N“®
 
     //interval‚Í•`‚©‚È‚¢I
+
+    Rigidbody2D rb;
+    [SerializeField] float moveSpeed;
+    [SerializeField] int destroy_Frame;
+    int i;
+    bool wall_flag;
+
+    private void Start()
+    {
+        rb = GetComponent<Rigidbody2D>();
+    }
+
     void Update()
     {
-
+        if (wall_flag)
+        {
+            i++;
+            if (destroy_Frame <= i)Destroy(gameObject);//•Ç‚Édestroy_flamŠÔG‚ê‚Ä‚¢‚½‚çÁ‚·
+        }
+        rb.velocity = new Vector2(0, moveSpeed);//^‰º‚É“®‚©‚· 
+    }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Player"))
+        {
+            GameObject player = collision.gameObject;
+            player.SetActive(false);
+            Debug.Log("miss!!");
+        }
+        else if (collision.CompareTag("wall"))
+        {
+            wall_flag = true;
+        }
     }
 }

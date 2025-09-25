@@ -10,5 +10,10 @@ public class enemy_death : MonoBehaviour
         {
             Destroy(gameObject);
         }
+        else if (collision.CompareTag("Player"))
+        {
+            Debug.Log("miss!");
+            collision.gameObject.SetActive(false);
+        }
     }
 }

@@ -14,13 +14,18 @@ public class Resurrection : MonoBehaviour
     public bool isResurrection;
 
     private bool _do;
-
+    private SpriteRenderer sr;
+    private void Start()
+    {
+        sr = playerObj.GetComponent<SpriteRenderer>();
+    }
     private void Update()
     {
         if(playerObj.activeSelf == false && _do == false)
         {
            StartCoroutine( resurrection_time());
         }
+        
     }
     IEnumerator resurrection_time()
     {
@@ -44,9 +49,15 @@ public class Resurrection : MonoBehaviour
 
             yield return new WaitForSeconds(3.5f);
             playerObj.SetActive(true);
+
             isResurrection = true;
 
+            
+
+            sr.color = Color.red;
             yield return new WaitForSeconds(3.5f);//無敵時間
+            sr.color = Color.white;
+
             isResurrection = false;
 
             _do = false;

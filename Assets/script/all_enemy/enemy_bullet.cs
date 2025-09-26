@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class enemy_bullet : MonoBehaviour
 {
-    [SerializeField] float moveSpeed;
+    //このスクリプトは、当たり判定を実現している
     [SerializeField] int destroy_Frame;
     GameObject GM;
     int i;
@@ -29,7 +29,7 @@ public class enemy_bullet : MonoBehaviour
             GameObject player = collision.gameObject;
             Resurrection resu = GM.GetComponent<Resurrection>();
 
-            if (resu.isResurrection == false)
+            if (resu.isResurrection == false)//無敵時間でなければ被弾する
             {
                 player.SetActive(false);
                 Debug.Log("miss!!");

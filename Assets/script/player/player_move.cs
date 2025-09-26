@@ -6,7 +6,7 @@ using UnityEngine.InputSystem;
 public class player_move : MonoBehaviour
 {
     Rigidbody2D rb;//rb.velocity‚Å“®‚©‚·—p
-    Vector2 axis;//OnMove‚Ì“ü—Í’l‚ð•Û‘¶
+    public Vector2 axis;//OnMove‚Ì“ü—Í’l‚ð•Û‘¶
 
     public float moveSpeed = 1;
     private float neutral_Speed , half_Speed;

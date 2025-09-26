@@ -4,7 +4,12 @@ using UnityEngine;
 
 public class enemy_death : MonoBehaviour
 {
-    private void OnTriggerEnter2D(Collider2D collision)
+    GameObject GM;
+    private void Awake()
+    {
+        GM = GameObject.Find("GameMaster");
+    }
+    private void OnTriggerStay2D(Collider2D collision)
     {
         if (collision.CompareTag("player_bullet"))//player‚Ì’e‚É“–‚½‚Á‚½‚ç
         {
@@ -13,7 +18,8 @@ public class enemy_death : MonoBehaviour
         else if (collision.CompareTag("Player"))
         {
             Debug.Log("miss!");
-            collision.gameObject.SetActive(false);
+            Resurrection resu = GM.GetComponent<Resurrection>();
+            if (resu.isResurrection == false)collision.gameObject.SetActive(false);
         }
     }
 }

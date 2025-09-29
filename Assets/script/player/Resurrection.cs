@@ -33,21 +33,22 @@ public class Resurrection : MonoBehaviour
         _player--;
         _bom = 2;
 
+        
+        textChange("Player : ",_player,player);
+        textChange(" Bom   : ",_bom, bom);
+
+        var Pmove = playerObj.GetComponent<player_move>();
+        Pmove.axis = Vector2.zero;//復活時に移動方向をニュートラル直す
+
+        playerObj.transform.position = Vector3.zero;
+
+        yield return new WaitForSeconds(3.5f);
         if (_player < 0)
         {
             Debug.Log("gemeover");//後で書く
         }
         else
         {
-            textChange("Player : ",_player,player);
-            textChange(" Bom   : ",_bom, bom);
-
-            var Pmove = playerObj.GetComponent<player_move>();
-            Pmove.axis = Vector2.zero;//復活時に移動方向をニュートラル直す
-
-            playerObj.transform.position = Vector3.zero;
-
-            yield return new WaitForSeconds(3.5f);
             playerObj.SetActive(true);
 
             isResurrection = true;
@@ -66,7 +67,8 @@ public class Resurrection : MonoBehaviour
     //残機とボムのUIを更新
     void textChange(string baseText ,int _n, Text textObj)
     {
-        
+        if (_n < 0) return;
+
         List<string> TextList = new List<string> { baseText };
         for (int i = 0; i < _n; i++)TextList.Add("♦");
 

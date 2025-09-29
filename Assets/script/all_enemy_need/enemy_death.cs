@@ -5,6 +5,7 @@ using UnityEngine;
 public class enemy_death : MonoBehaviour
 {
     GameObject GM;
+    public int HP = 1;
     private void Awake()
     {
         GM = GameObject.Find("GameMaster");
@@ -13,7 +14,9 @@ public class enemy_death : MonoBehaviour
     {
         if (collision.CompareTag("player_bullet"))//playerの弾に当たったら
         {
-            Destroy(gameObject);
+            //スコアを増加させる。後で描く
+            HP--;
+            if(HP <= 0)Destroy(gameObject);
         }
         else if (collision.CompareTag("Player"))
         {

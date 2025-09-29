@@ -30,7 +30,6 @@ public class enemy_1 : MonoBehaviour
         rb.MovePosition(myPos);
         move_i++;
 
-        Debug.Log("move_i= "+move_i);
         if (move_i > destroy_frame) Destroy(gameObject);
     }
     void shot()

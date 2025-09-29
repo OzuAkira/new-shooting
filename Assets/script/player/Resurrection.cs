@@ -40,7 +40,7 @@ public class Resurrection : MonoBehaviour
         var Pmove = playerObj.GetComponent<player_move>();
         Pmove.axis = Vector2.zero;//復活時に移動方向をニュートラル直す
 
-        playerObj.transform.position = Vector3.zero;
+        playerObj.transform.position = new Vector3(0,-4,0);
 
         yield return new WaitForSeconds(3.5f);
         if (_player < 0)

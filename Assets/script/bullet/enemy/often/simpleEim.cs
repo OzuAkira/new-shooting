@@ -8,7 +8,7 @@ public class simpleEim : MonoBehaviour
     public float addRotation = 270;
 
     Rigidbody2D rb;
-    [SerializeField]GameObject playerObj;
+    public GameObject playerObj;
     
     private void Start()
     {
@@ -20,7 +20,12 @@ public class simpleEim : MonoBehaviour
     }
     private void Update()
     {
-        var movepos = transform.position + transform.rotation * (Vector3.up * moveSpeed);//’e‚ÌŒü‚«‚É’¼i
+        Vector3 movepos;
+        if(playerObj.activeSelf == false)
+        {
+            movepos = Vector3.down*moveSpeed;
+        }
+        movepos = transform.position + transform.rotation * (Vector3.up * moveSpeed);//’e‚ÌŒü‚«‚É’¼i
         rb.MovePosition(movepos);
     }
 }

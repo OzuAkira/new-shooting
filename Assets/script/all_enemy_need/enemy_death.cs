@@ -15,7 +15,9 @@ public class enemy_death : MonoBehaviour
         if (collision.CompareTag("player_bullet"))//playerの弾に当たったら
         {
             //スコアを増加させる。後で描く
+            //このタイミングで音を再生するのもアリ
             HP--;
+            Destroy(collision.gameObject);
             if(HP <= 0)Destroy(gameObject);
         }
         else if (collision.CompareTag("Player"))

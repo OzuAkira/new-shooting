@@ -6,7 +6,7 @@ using UnityEngine;
 public class enemy_4 : MonoBehaviour
 {
     Vector3 myPos , movePos;
-    float myY = 0 , x_move_speed = 0.1f , y_move_speed = 0.1f;
+    float myY = 0 , x_move_speed = 0.005f , y_move_speed = 0.01f;
     [SerializeField] int i = 0 , add_num=180;
 
     Rigidbody2D rb;

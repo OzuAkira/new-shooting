@@ -14,7 +14,7 @@ public class stage_1 : MonoBehaviour
     int count = 10;
 
     int next_count = 8;
-    float wait_s = 0.5f;
+    [SerializeField]float wait_s = 1f;
     //別スクリプトからコルーチンを呼ぶ感じで行こうと思てる
 
     void Start()

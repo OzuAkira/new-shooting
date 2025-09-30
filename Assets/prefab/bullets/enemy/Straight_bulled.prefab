@@ -162,7 +162,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 851d30b30a51890418bd2c1305c5997f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  destroy_Frame: 600
+  destroy_Frame: 300
 --- !u!114 &-1817503428504681627
 MonoBehaviour:
   m_ObjectHideFlags: 0

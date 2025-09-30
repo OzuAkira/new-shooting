@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class enemy_1 : MonoBehaviour
 {
-    Vector3 velocity = new Vector3(0.02f , 0.001f,0),myPos;
+    [SerializeField] Vector3 velocity = new Vector3(0.02f , 0.001f,0),myPos;
     Rigidbody2D rb;
     int move_i = 0, destroy_frame = 500;
 

@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 1463606414570252652}
   m_Layer: 0
   m_Name: enemy_bullet
-  m_TagString: Untagged
+  m_TagString: enemy_bullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -172,7 +172,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 851d30b30a51890418bd2c1305c5997f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  destroy_Frame: 600
+  destroy_Frame: 150
 --- !u!114 &1463606414570252652
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -187,3 +187,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 0.1
   addRotation: 270
+  playerObj: {fileID: 0}

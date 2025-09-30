@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 4893491790578890521}
   - component: {fileID: 2594337352712500210}
   m_Layer: 0
-  m_Name: enemy_5
+  m_Name: enemy_6
   m_TagString: enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -78,7 +78,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
-  m_Color: {r: 1, g: 0.57547164, b: 0.57547164, a: 1}
+  m_Color: {r: 0.5764706, g: 1, b: 0.99262017, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -175,7 +175,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d9c60a8840c6ee7458addcf50ac5ad9d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  velocity: {x: -0.02, y: 0.001, z: 0}
+  velocity: {x: 0.02, y: 0.001, z: 0}
   myPos: {x: 0, y: 0, z: 0}
   eim_Bullet: {fileID: 3769863703786932473, guid: 03da78e256a454a4782c74c4efb74909, type: 3}
   interval: 180

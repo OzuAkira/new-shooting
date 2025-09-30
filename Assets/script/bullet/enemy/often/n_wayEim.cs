@@ -13,7 +13,7 @@ public class n_wayEim : MonoBehaviour
     [SerializeField] GameObject straght_bullet;
 
     Rigidbody2D rb;
-    [SerializeField] float moveSpeed = 0.1f;
+    [SerializeField] float moveSpeed = 0.1f , max_angle = 15;
 
     private void Start()
     {
@@ -29,7 +29,7 @@ public class n_wayEim : MonoBehaviour
 
         for (int i = 0; i < loop_i; i++)
         {
-            var_angle = 45 / (i + 1);
+            var_angle = max_angle / (i + 1);
             Instantiate(straght_bullet , gameObject.transform.position , Quaternion.Euler(0, 0, (angle + addRotation) + var_angle));
             Instantiate(straght_bullet, gameObject.transform.position, Quaternion.Euler(0, 0, (angle + addRotation) + var_angle * -1));//‚±‚±‚ÅŠp“x‚É-1‚ðæŽZ‚·‚é‚±‚Æ‚ÅAŒvŽZ—Ê‚ð”¼Œ¸
         }

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Threading;
 using UnityEngine;
 
-public class enemy_1 : MonoBehaviour
+public class enemy_1_2_5_6 : MonoBehaviour
 {
     [SerializeField] Vector3 velocity = new Vector3(0.02f , 0.001f,0),myPos;
     Rigidbody2D rb;

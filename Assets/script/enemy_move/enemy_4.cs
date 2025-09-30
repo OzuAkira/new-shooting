@@ -11,6 +11,9 @@ public class enemy_4 : MonoBehaviour
 
     Rigidbody2D rb;
     bool isTrun = false;
+    int shot_i = 0 , interval = 120;
+
+    [SerializeField] GameObject fiveWay_bullet;
     private void Start()
     {
         rb = gameObject.GetComponent<Rigidbody2D>();
@@ -19,6 +22,7 @@ public class enemy_4 : MonoBehaviour
     private void Update()
     {
         move();
+        shot();
     }
     private void move()
     {
@@ -37,6 +41,11 @@ public class enemy_4 : MonoBehaviour
 
     void shot()
     {
-
+        shot_i++;
+        if (shot_i >= interval)
+        {
+            shot_i = 0;
+            Instantiate(fiveWay_bullet, gameObject.transform.position, quaternion.identity);
+        }
     }
 }

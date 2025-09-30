@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading;
 using UnityEngine;
 
 public class enemy_2 : MonoBehaviour
@@ -31,15 +32,15 @@ public class enemy_2 : MonoBehaviour
         rb.MovePosition(myPos);
         move_i++;
 
-        Debug.Log("move_i= " + move_i);
         if (move_i > destroy_frame) Destroy(gameObject);//destroy_frame経ったらオブジェクトを消す
     }
     void shot()
     {
 
-        if (shot_i % interval == 0)//interval秒に一回弾を発射
+        if (shot_i % interval == 0)//intervalフレームに一回弾を発射
         {
             shot_i = 0;
+            Thread.Sleep(Random.Range(0, 10));
             Instantiate(eim_Bullet, gameObject.transform.position, Quaternion.identity);
         }
         shot_i++;

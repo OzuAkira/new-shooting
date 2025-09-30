@@ -5,7 +5,7 @@ using UnityEngine;
 public class enemy_bullet : MonoBehaviour
 {
     //このスクリプトは、当たり判定を実現している
-    [SerializeField] int destroy_Frame;
+    [SerializeField] int destroy_Frame = 600;
     GameObject GM;
     int i;
     bool wall_flag;

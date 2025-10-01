@@ -101,6 +101,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   HP: 100
+  hpStoper: 0
 --- !u!50 &-5896995721575307556
 Rigidbody2D:
   serializedVersion: 4
@@ -188,3 +189,5 @@ MonoBehaviour:
   straght_bullet: {fileID: 3975430520059093986, guid: 8645a62edbdc05b4ca2993cf7768d3bd, type: 3}
   stopPos: 3
   moveSpeed: -0.1
+  moveSpeed_2: 0.01
+  i: 0

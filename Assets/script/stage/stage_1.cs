@@ -15,7 +15,8 @@ public class stage_1 : MonoBehaviour
 
     int next_count = 8;
     [SerializeField]float wait_s = 1f;
-    //別スクリプトからコルーチンを呼ぶ感じで行こうと思てる
+
+    List<GameObject> keyEnemies = new List<GameObject>();//倒さないと先に進めない
 
     void Start()
     {
@@ -82,9 +83,14 @@ public class stage_1 : MonoBehaviour
 
             if (i == count - 1)//ちょっと硬い２体の敵が出現
             {
-                Instantiate(enemy_3, enemy3_pos, Quaternion.identity).GetComponent<enemy_3>().interval_flag = true;//interval_flagをTrueにする
+                GameObject wallShot_enemy_1 = Instantiate(enemy_3, enemy3_pos, Quaternion.identity);
+                wallShot_enemy_1.GetComponent<enemy_3>().interval_flag = true;//interval_flagをTrueにする
 
-                Instantiate(enemy_3, new Vector2(enemy3_pos.x * -1, enemy3_pos.y), Quaternion.identity);//x座標に-1を乗算して出現させる
+                keyEnemies.Add(wallShot_enemy_1);//こいつは倒さないとボスが出現しない
+
+                GameObject wallShot_enemy_2 = Instantiate(enemy_3, new Vector2(enemy3_pos.x * -1, enemy3_pos.y), Quaternion.identity);//x座標に-1を乗算して出現させる
+
+                keyEnemies.Add (wallShot_enemy_2);//こいつは倒さないとボスが出現しない
             }
         }
         yield return new WaitForSeconds(1);
@@ -108,21 +114,23 @@ public class stage_1 : MonoBehaviour
         GameObject circlShot_enemy = Instantiate(enemy_7 , enemy7_pos , Quaternion.identity);//360度撃つ奴
         enemy_death death = circlShot_enemy.GetComponent<enemy_death>();
 
+        keyEnemies.Add(circlShot_enemy);//こいつは倒さないとボスが出現しない
+
         yield return new WaitForSeconds(wait_s);
 
         while (middle_enemy2 != null)
         {
             death.hpStoper = true;
-            StartCoroutine(phase_3_1());
-        }
-        IEnumerator phase_3_1()
-        {
             Instantiate(enemy_6, enemy1_2_pos, Quaternion.identity);//右端からCount匹の敵が出現
             yield return new WaitForSeconds(4);
         }
+
         death.hpStoper = false;
         yield return new WaitForSeconds(wait_s);
-        Debug.Log("compreate");
+        while (true)
+        {
+            
+        }
     }
     
 

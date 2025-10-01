@@ -105,19 +105,26 @@ public class stage_1 : MonoBehaviour
 
         GameObject middle_enemy2 = Instantiate(enemy_4, new Vector2( -enemy4_pos.x , enemy4_pos.y), Quaternion.identity);//テンション高いやつ2号。反対側から出現
 
-        Instantiate(enemy_7 , enemy7_pos , Quaternion.identity);//360度撃つ奴
+        GameObject circlShot_enemy = Instantiate(enemy_7 , enemy7_pos , Quaternion.identity);//360度撃つ奴
+        enemy_death death = circlShot_enemy.GetComponent<enemy_death>();
 
         yield return new WaitForSeconds(wait_s);
 
         while (middle_enemy2 != null)
         {
+            death.hpStoper = true;
+            StartCoroutine(phase_3_1());
+        }
+        IEnumerator phase_3_1()
+        {
             Instantiate(enemy_6, enemy1_2_pos, Quaternion.identity);//右端からCount匹の敵が出現
             yield return new WaitForSeconds(4);
         }
-
-
+        death.hpStoper = false;
+        yield return new WaitForSeconds(wait_s);
+        Debug.Log("compreate");
     }
-
+    
 
 
 

@@ -5,11 +5,15 @@ using UnityEngine;
 
 public class enemy_4 : MonoBehaviour
 {
-    Vector3 myPos , movePos;
-    float myY = 0 , x_move_speed = 0.005f , y_move_speed = 0.01f;
-    [SerializeField] int i = 0 , add_num=180;
+    Vector3 myPos, movePos;
+    float myY = 0, x_move_speed = 0.02f, y_move_speed = 0.1f, turnPos = 4;
+    [SerializeField] int i = 0;
 
     Rigidbody2D rb;
+    bool isTrun = false;
+    int shot_i = 0 , interval = 120;
+
+    [SerializeField] GameObject fiveWay_bullet;
     private void Start()
     {
         rb = gameObject.GetComponent<Rigidbody2D>();
@@ -17,11 +21,31 @@ public class enemy_4 : MonoBehaviour
     }
     private void Update()
     {
-        myY = math.sin(i * y_move_speed + add_num);
-        i++;
+        move();
+        shot();
+    }
+    private void move()
+    {
 
-        movePos = myPos + new Vector3(i * x_move_speed , myY,0);
+        myY = math.sin(i * y_move_speed);// + add_num);
+        if (movePos.x > turnPos && isTrun == false) isTrun = true;
+        else if (movePos.x < -turnPos && isTrun) isTrun = false;
+
+        if (isTrun) i--;
+        else i++;
+
+        movePos = myPos + new Vector3(i * x_move_speed, myY, 0);
 
         rb.MovePosition(movePos);
+    }
+
+    void shot()
+    {
+        shot_i++;
+        if (shot_i >= interval)
+        {
+            shot_i = 0;
+            Instantiate(fiveWay_bullet, gameObject.transform.position, quaternion.identity);
+        }
     }
 }

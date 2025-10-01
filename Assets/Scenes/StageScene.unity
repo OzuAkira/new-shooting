@@ -207,6 +207,7 @@ GameObject:
   m_Component:
   - component: {fileID: 149419052}
   - component: {fileID: 149419053}
+  - component: {fileID: 149419054}
   m_Layer: 0
   m_Name: GameMaster
   m_TagString: Untagged
@@ -247,6 +248,18 @@ MonoBehaviour:
   _player: 2
   _bom: 2
   isResurrection: 0
+--- !u!114 &149419054
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 149419051}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f347642e34a10d749a38df7969e0a710, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &513209819
 GameObject:
   m_ObjectHideFlags: 0
@@ -1578,10 +1591,14 @@ MonoBehaviour:
   enemy_2: {fileID: 728689543331644673, guid: 747e19189fddc3a4cade11d838a635e1, type: 3}
   enemy_3: {fileID: 728689543331644673, guid: c65d977e23fc04f40ae7be87e8358596, type: 3}
   enemy_4: {fileID: 1179221743106620999, guid: d52ea54f35e808a4d8e31dbd3c86c350, type: 3}
-  enemy_5: {fileID: 0}
+  enemy_5: {fileID: 5427302999015849098, guid: 69d94c7ae3a0b924abae8e6b11c18198, type: 3}
+  enemy_6: {fileID: 5427302999015849098, guid: d870f7c01e8eac641900c11057a39e4a, type: 3}
+  enemy_7: {fileID: 1179221743106620999, guid: 94390901b68884e4eaceaf451182c42f, type: 3}
   enemy1_2_pos: {x: -4.5, y: 2.5}
   enemy3_pos: {x: -1.5, y: 5.5}
   enemy4_pos: {x: -5.5, y: 4}
+  enemy7_pos: {x: 0, y: 5.5}
+  wait_s: 0.5
 --- !u!4 &1824548287
 Transform:
   m_ObjectHideFlags: 0

@@ -8,13 +8,13 @@ public class stage_1 : MonoBehaviour
 {
     [SerializeField] UnityEngine.UI.Image image;
 
-    public GameObject enemy_1, enemy_2, enemy_3, enemy_4 , enemy_5;
-    public Vector2 enemy1_2_pos, enemy3_pos, enemy4_pos;
+    public GameObject enemy_1, enemy_2, enemy_3, enemy_4 , enemy_5 , enemy_6 , enemy_7;
+    public Vector2 enemy1_2_pos, enemy3_pos, enemy4_pos , enemy7_pos;
 
     int count = 10;
 
     int next_count = 8;
-    float wait_s = 0.5f;
+    [SerializeField]float wait_s = 1f;
     //別スクリプトからコルーチンを呼ぶ感じで行こうと思てる
 
     void Start()
@@ -93,20 +93,38 @@ public class stage_1 : MonoBehaviour
     }
     IEnumerator phase_3()
     {
-        Instantiate(enemy_4, enemy4_pos, Quaternion.identity);
+        GameObject middle_enemy1 = Instantiate(enemy_4, enemy4_pos, Quaternion.identity);//テンション高いやつ
 
         yield return new WaitForSeconds(2);
 
-        for (int i = 0; i < count; i++)
+        while (middle_enemy1 != null)
         {
             Instantiate(enemy_5, new Vector2(enemy1_2_pos.x * -1, enemy1_2_pos.y), Quaternion.identity);//右端からCount匹の敵が出現
-            yield return new WaitForSeconds(wait_s);
+            yield return new WaitForSeconds(4);
         }
 
+        GameObject middle_enemy2 = Instantiate(enemy_4, new Vector2( -enemy4_pos.x , enemy4_pos.y), Quaternion.identity);//テンション高いやつ2号。反対側から出現
+
+        GameObject circlShot_enemy = Instantiate(enemy_7 , enemy7_pos , Quaternion.identity);//360度撃つ奴
+        enemy_death death = circlShot_enemy.GetComponent<enemy_death>();
 
         yield return new WaitForSeconds(wait_s);
-    }
 
+        while (middle_enemy2 != null)
+        {
+            death.hpStoper = true;
+            StartCoroutine(phase_3_1());
+        }
+        IEnumerator phase_3_1()
+        {
+            Instantiate(enemy_6, enemy1_2_pos, Quaternion.identity);//右端からCount匹の敵が出現
+            yield return new WaitForSeconds(4);
+        }
+        death.hpStoper = false;
+        yield return new WaitForSeconds(wait_s);
+        Debug.Log("compreate");
+    }
+    
 
 
 

@@ -6,6 +6,7 @@ public class enemy_death : MonoBehaviour
 {
     GameObject GM;
     public int HP = 1;
+    public bool hpStoper = false;
     private void Awake()
     {
         GM = GameObject.Find("GameMaster");
@@ -18,6 +19,7 @@ public class enemy_death : MonoBehaviour
             //このタイミングで音を再生するのもアリ
             HP--;
             Destroy(collision.gameObject);
+            if(hpStoper)HP = 1;
             if(HP <= 0)Destroy(gameObject);
         }
         else if (collision.CompareTag("Player"))

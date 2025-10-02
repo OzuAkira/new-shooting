@@ -65,7 +65,7 @@ public class Resurrection : MonoBehaviour
         }
     }
     //残機とボムのUIを更新
-    void textChange(string baseText ,int _n, Text textObj)
+    public void textChange(string baseText ,int _n, Text textObj)
     {
         if (_n < 0) return;
 

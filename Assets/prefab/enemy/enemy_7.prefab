@@ -100,7 +100,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a7a65f51f0b387245a89c1a5903182dd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  HP: 100
+  HP: 25
   hpStoper: 0
 --- !u!50 &-5896995721575307556
 Rigidbody2D:

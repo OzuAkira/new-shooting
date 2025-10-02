@@ -43,4 +43,5 @@ public class enemy_1_2_5_6 : MonoBehaviour
         }
         shot_i++;
     }
+    
 }

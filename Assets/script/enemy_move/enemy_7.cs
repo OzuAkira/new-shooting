@@ -6,7 +6,7 @@ using UnityEngine;
 public class enemy_7 : MonoBehaviour
 {
     [SerializeField] GameObject straght_bullet;
-    int loop_int = 45 ;
+    int loop_int = 36 ;
     [SerializeField] float stopPos = 3 , moveSpeed = -0.1f , moveSpeed_2 = 0.01f , i = 0;
     Rigidbody2D rb;
 
@@ -45,7 +45,7 @@ public class enemy_7 : MonoBehaviour
     {
         for (int i = 0; i < loop_int; i++)
         {
-            Instantiate(straght_bullet,gameObject.transform.position , Quaternion.Euler(0,0,i*8));
+            Instantiate(straght_bullet,gameObject.transform.position , Quaternion.Euler(0,0,i*10));
         }
     }
 

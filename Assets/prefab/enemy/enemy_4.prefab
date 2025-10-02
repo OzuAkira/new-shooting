@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 8084382385089146958}
   m_Layer: 0
   m_Name: enemy_4
-  m_TagString: Untagged
+  m_TagString: enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -101,7 +101,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   i: 0
-  add_num: 180
+  fiveWay_bullet: {fileID: 2589948613288264741, guid: 0f4c01531d12bcf498f87d97dde54ebc, type: 3}
 --- !u!114 &1565904972800122072
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -130,7 +130,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 0
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2

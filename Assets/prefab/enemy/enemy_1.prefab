@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 3249297040881455783}
   m_Layer: 0
   m_Name: enemy_1
-  m_TagString: Untagged
+  m_TagString: enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -162,6 +162,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a7a65f51f0b387245a89c1a5903182dd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  HP: 1
 --- !u!114 &3249297040881455783
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -174,4 +175,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d9c60a8840c6ee7458addcf50ac5ad9d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  velocity: {x: 0.02, y: 0.001, z: 0}
+  myPos: {x: 0, y: 0, z: 0}
   eim_Bullet: {fileID: 3769863703786932473, guid: 03da78e256a454a4782c74c4efb74909, type: 3}
+  interval: 90
+  shot_i: 0

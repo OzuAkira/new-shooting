@@ -163,6 +163,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   HP: 1
+  hpStoper: 0
 --- !u!114 &3249297040881455783
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -175,7 +176,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d9c60a8840c6ee7458addcf50ac5ad9d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  velocity: {x: 0.02, y: 0.001, z: 0}
+  velocity: {x: 0.04, y: 0.001, z: 0}
   myPos: {x: 0, y: 0, z: 0}
   eim_Bullet: {fileID: 3769863703786932473, guid: 03da78e256a454a4782c74c4efb74909, type: 3}
   interval: 90

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -127,10 +128,17 @@ public class stage_1 : MonoBehaviour
 
         death.hpStoper = false;
         yield return new WaitForSeconds(wait_s);
+
         while (true)
         {
-            
+            if (keyEnemies.All(enemy => enemy == null))//keyEnemies内全てのオブジェクトがnullだったら
+                break;
+
+            yield return null;
         }
+        yield return new WaitForSeconds(3);
+
+        Debug.Log("complete!");
     }
     
 

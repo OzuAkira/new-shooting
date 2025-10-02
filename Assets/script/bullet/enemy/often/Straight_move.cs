@@ -6,7 +6,7 @@ public class Straight_move : MonoBehaviour
 {
     Rigidbody2D rb;
     Vector3 myPos;
-    [SerializeField] float moveSpeed = 0.1f;
+    public float moveSpeed = 0.1f;
     private void Start()
     {
         rb = gameObject.GetComponent<Rigidbody2D>();

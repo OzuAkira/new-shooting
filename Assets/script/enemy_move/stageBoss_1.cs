@@ -49,20 +49,19 @@ public class stageBoss_1 : MonoBehaviour
         StartCoroutine(phase_1());
     }
 
-    int circleNum = 45 ;
-    float addAngle = 4;
 
-    float ms_1=0.05f , ms_2=0.1f;
 
-    public float maxPos, minPos;
+    //public float maxPos= 0.9999997f, minPos= -0.9999972f;
+    int frame_1 = 0 , shotFrame = 158;
 
     IEnumerator phase_1()
     {
-
         float xPos , i_1=0 , add_i =0.01f ;
-        bool isShoted = false;
 
+        
         StartCoroutine(circleShot());
+
+        yield return new WaitForSeconds(2);
 
         while (true)
         {
@@ -72,9 +71,15 @@ public class stageBoss_1 : MonoBehaviour
             Vector2 pos = new Vector3(xPos*2, gameObject.transform.position.y, 0);
             rb.MovePosition (pos);
 
-            //–³ŒÀƒ‹[ƒv”­¶’†
-            if (xPos >= maxPos)StartCoroutine(circleShot());
-            if (xPos <= minPos) StartCoroutine(circleShot());
+            frame_1++;
+            if (frame_1 == shotFrame)yield return StartCoroutine(circleShot());
+            if(frame_1 == shotFrame*2) StartCoroutine(circleShot());
+            if(frame_1 == shotFrame * 3)yield return StartCoroutine(circleShot());
+            if (frame_1 == shotFrame * 4)
+            {
+                StartCoroutine(circleShot());
+                frame_1 = 0;
+            }
 
             yield return null;  
         }
@@ -82,6 +87,10 @@ public class stageBoss_1 : MonoBehaviour
     IEnumerator circleShot()
     {
 
+        int circleNum = 45;
+        float addAngle = 4;
+
+        float ms_1 = 0.05f, ms_2 = 0.1f;
 
         float _ = rnd.Next(0, 2);//‘æˆêˆø”ˆÈãA‘æ“ñˆø”–¢–ž
 
@@ -122,4 +131,6 @@ public class stageBoss_1 : MonoBehaviour
             yield return new WaitForSeconds(3);
         }
     }
-}
+
+    }
+

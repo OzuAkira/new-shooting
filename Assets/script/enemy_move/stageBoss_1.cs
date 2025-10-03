@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Unity.Mathematics;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class stageBoss_1 : MonoBehaviour
 
@@ -13,12 +14,15 @@ public class stageBoss_1 : MonoBehaviour
 
     [SerializeField] GameObject[] phase_1_bullet;
 
+    GameObject playerObj;
     Rigidbody2D rb;
     BoxCollider2D bc;
+    Slider slider;int HP = 300;
 
     bool isPhase_1 = false;
 
     System.Random rnd;
+
     void Start()
     {
         bc = GetComponent<BoxCollider2D>();
@@ -28,8 +32,32 @@ public class stageBoss_1 : MonoBehaviour
 
         rnd = new System.Random();      // Randomオブジェクトを作成
 
+        playerObj = GameObject.Find("player");
+
         StartCoroutine(buttleStart());//登場＆無敵解除
     }
+
+    //被弾処理
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("player_bullet"))
+        {
+            
+            Destroy(collision.gameObject);
+            HP--;
+            slider.value = HP-200;
+
+        }
+    }
+
+
+
+
+
+
+
+
+    
     IEnumerator buttleStart()
     {
         //下に降りてくるやつ
@@ -43,15 +71,17 @@ public class stageBoss_1 : MonoBehaviour
 
         yield return new WaitForSeconds(2);
 
-        Instantiate(HP_slider);//HPバーを表示
+        GameObject _hp = Instantiate(HP_slider);//HPバーを表示
+        slider = _hp.transform.Find("Slider").GetComponent<Slider>();//sliderを取得
+        slider.value = HP;//HPを初期化
+
         bc.enabled = true;//当たり判定をture
+
+
 
         StartCoroutine(phase_1());
     }
 
-
-
-    //public float maxPos= 0.9999997f, minPos= -0.9999972f;
     int frame_1 = 0 , shotFrame = 158;
 
     IEnumerator phase_1()
@@ -63,6 +93,8 @@ public class stageBoss_1 : MonoBehaviour
 
         yield return new WaitForSeconds(2);
 
+        StartCoroutine(eimShot_1());
+
         while (true)
         {
             xPos = math.sin(i_1);
@@ -71,19 +103,40 @@ public class stageBoss_1 : MonoBehaviour
             Vector2 pos = new Vector3(xPos*2, gameObject.transform.position.y, 0);
             rb.MovePosition (pos);
 
-            frame_1++;
+            frame_1++;//移動後に撃つ処理
             if (frame_1 == shotFrame)yield return StartCoroutine(circleShot());
             if(frame_1 == shotFrame*2) StartCoroutine(circleShot());
             if(frame_1 == shotFrame * 3)yield return StartCoroutine(circleShot());
             if (frame_1 == shotFrame * 4)
             {
                 StartCoroutine(circleShot());
-                frame_1 = 0;
+                frame_1 = 0;//元に戻す（x=0）
             }
 
             yield return null;  
         }
     }
+    public List<Vector2> Raw_eimPos;
+    IEnumerator eimShot_1()
+    {
+        while (true)
+        {
+            List<Vector2> clonePos = Raw_eimPos;
+
+            int rand_n = rnd.Next(clonePos.Count/2, clonePos.Count);
+            for (int i = 0; i < rand_n; i++)
+            {
+                Debug.Log("ナッカー");
+                int rand_index = rnd.Next(0, clonePos.Count);//インデックスをランダムに生成
+                Instantiate(phase_1_bullet[1], clonePos[rand_index], Quaternion.identity);//ランダムな座標に自機狙い弾を生成
+                clonePos.RemoveAt(rand_index);//使用したインデックスを削除
+                yield return new WaitForSeconds(1);
+            }
+            Debug.Log("＼(^o^)／ｵﾜﾀ");
+            yield return new WaitForSeconds(2);
+        }
+    }
+    
     IEnumerator circleShot()
     {
 

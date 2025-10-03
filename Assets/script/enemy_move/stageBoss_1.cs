@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Mathematics;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -17,13 +18,15 @@ public class stageBoss_1 : MonoBehaviour
 
     bool isPhase_1 = false;
 
-    
+    System.Random rnd;
     void Start()
     {
         bc = GetComponent<BoxCollider2D>();
         bc.enabled = false;//最初は無敵
 
         rb = GetComponent<Rigidbody2D>();
+
+        rnd = new System.Random();      // Randomオブジェクトを作成
 
         StartCoroutine(buttleStart());//登場＆無敵解除
     }
@@ -51,9 +54,38 @@ public class stageBoss_1 : MonoBehaviour
 
     float ms_1=0.05f , ms_2=0.1f;
 
+    public float maxPos, minPos;
+
     IEnumerator phase_1()
     {
+
+        float xPos , i_1=0 , add_i =0.01f ;
+        bool isShoted = false;
+
+        StartCoroutine(circleShot());
+
         while (true)
+        {
+            xPos = math.sin(i_1);
+            i_1 += add_i;
+
+            Vector2 pos = new Vector3(xPos*2, gameObject.transform.position.y, 0);
+            rb.MovePosition (pos);
+
+            //無限ループ発生中
+            if (xPos >= maxPos)StartCoroutine(circleShot());
+            if (xPos <= minPos) StartCoroutine(circleShot());
+
+            yield return null;  
+        }
+    }
+    IEnumerator circleShot()
+    {
+
+
+        float _ = rnd.Next(0, 2);//第一引数以上、第二引数未満
+
+        if (_ == 0)
         {
             for (int i = 0; i < circleNum; i++)
             {
@@ -65,7 +97,25 @@ public class stageBoss_1 : MonoBehaviour
 
             for (int i = 0; i < circleNum; i++)
             {
-                Straight_move straight_Move = Instantiate(phase_1_bullet[0], gameObject.transform.position, Quaternion.Euler(0, 0, i * 8 +addAngle))
+                Straight_move straight_Move = Instantiate(phase_1_bullet[0], gameObject.transform.position, Quaternion.Euler(0, 0, i * 8 + addAngle))
+                    .GetComponent<Straight_move>();
+                straight_Move.moveSpeed = ms_2;
+            }
+            yield return new WaitForSeconds(3);
+        }
+        else
+        {
+            for (int i = 0; i < circleNum; i++)
+            {
+                Straight_move straight_Move = Instantiate(phase_1_bullet[0], gameObject.transform.position, Quaternion.Euler(0, 0, i * 8 + addAngle))
+                    .GetComponent<Straight_move>();
+                straight_Move.moveSpeed = ms_1;
+            }
+            yield return new WaitForSeconds(0.25f);
+
+            for (int i = 0; i < circleNum; i++)
+            {
+                Straight_move straight_Move = Instantiate(phase_1_bullet[0], gameObject.transform.position, Quaternion.Euler(0, 0, i * 8))
                     .GetComponent<Straight_move>();
                 straight_Move.moveSpeed = ms_2;
             }

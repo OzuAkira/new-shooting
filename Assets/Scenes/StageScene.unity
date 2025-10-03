@@ -334,7 +334,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -2882875174048004873, guid: be7fedc9267c9df4bb9fc2e8957be43d, type: 3}
       propertyPath: Raw_eimPos.Array.data[6].y
-      value: -2.82
+      value: 2.82
       objectReference: {fileID: 0}
     - target: {fileID: -2882875174048004873, guid: be7fedc9267c9df4bb9fc2e8957be43d, type: 3}
       propertyPath: Raw_eimPos.Array.data[7].x

@@ -8,6 +8,7 @@ using UnityEngine.UI;
 public class stageBoss_1 : MonoBehaviour
 
 //ボスは全ての処理をこのスクリプトで実行する
+//ただし、UIは除く
 {
     [SerializeField] float start_y_Pos = 3 , moveSpeed;
     [SerializeField] GameObject HP_slider;
@@ -17,7 +18,7 @@ public class stageBoss_1 : MonoBehaviour
     GameObject playerObj;
     Rigidbody2D rb;
     BoxCollider2D bc;
-    Slider slider;int HP = 300;
+    Slider slider;float HP = 300;
 
     bool isSpell = false , isPhase_1 = false;
 
@@ -195,6 +196,9 @@ public class stageBoss_1 : MonoBehaviour
 
     Vector3 spell_myPos = new Vector3(0, 3, 0);
     float spell_1_moveSpeed = 0.01f;
+
+    public GameObject enemy_image;
+
     IEnumerator spell_1()
     {
         bc.enabled = false;//当たり判定を消す
@@ -203,12 +207,15 @@ public class stageBoss_1 : MonoBehaviour
 
         Vector3 velocity = spell_myPos - gameObject.transform.position;//ベクトルを計算
         bool right = false;
-
         if(velocity.x > 0)right = true;//進行方向が右（X方向のベクトルが正の値）の場合はtrue
+
+        GameObject Animetion_obj = Instantiate(enemy_image);//UIアニメーションを再生（スペルカード名）
+
         //定位置まで移動
-        while (gameObject.transform.position != spell_myPos)
+        while (gameObject.transform.position != spell_myPos )
         {
             
+
             Vector3 movePos = gameObject.transform.position + velocity * spell_1_moveSpeed;
 
             if (right && movePos.x > 0) movePos = spell_myPos;//矯正
@@ -219,7 +226,21 @@ public class stageBoss_1 : MonoBehaviour
             yield return null;
         }
         
+        //UIアニメーションが再生されたら脱出
+        while (Animetion_obj.GetComponent<spell_animetion>().finish == false)
+        {
+            yield return null;
+        }
+
+        Destroy(Animetion_obj);
+
+        bc.enabled = true;//当たり判定を復活
+
         //ここからスペルカードの弾幕を書く
+        while (true)
+        {
+            yield return null;
+        }
 
     }
     }

@@ -100,9 +100,25 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   start_y_Pos: 3
-  moveSpeed: 0.01
+  moveSpeed: 0.03
   HP_slider: {fileID: 2096499495895237190, guid: d2b51914f4642a2419d491f3ac3b9d65, type: 3}
-  phase_1_bullet: []
+  phase_1_bullet:
+  - {fileID: 3975430520059093986, guid: 8645a62edbdc05b4ca2993cf7768d3bd, type: 3}
+  - {fileID: 3769863703786932473, guid: 03da78e256a454a4782c74c4efb74909, type: 3}
+  Raw_eimPos:
+  - {x: 2.33, y: 0.77}
+  - {x: 3.1, y: 3.01}
+  - {x: 1.09, y: 4.47}
+  - {x: 3.77, y: -0.55}
+  - {x: -3.24, y: -0.63}
+  - {x: -1.26, y: 0.6}
+  - {x: -3.53, y: 2.82}
+  - {x: -2.21, y: 2.96}
+  - {x: -3.59, y: 4.45}
+  - {x: -1.09, y: 4.4}
+  - {x: 1.67, y: 3.38}
+  - {x: -0.7, y: 1.74}
+  enemy_image: {fileID: 3357411028948348872, guid: d0dfdbbcae47d40418ab6660589387e0, type: 3}
 --- !u!50 &8279592422438214213
 Rigidbody2D:
   serializedVersion: 4

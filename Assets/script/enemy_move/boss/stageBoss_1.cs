@@ -8,6 +8,7 @@ using UnityEngine.UI;
 public class stageBoss_1 : MonoBehaviour
 
 //ボスは全ての処理をこのスクリプトで実行する
+//ただし、UIは除く
 {
     [SerializeField] float start_y_Pos = 3 , moveSpeed;
     [SerializeField] GameObject HP_slider;
@@ -17,9 +18,9 @@ public class stageBoss_1 : MonoBehaviour
     GameObject playerObj;
     Rigidbody2D rb;
     BoxCollider2D bc;
-    Slider slider;int HP = 300;
+    Slider slider;float HP = 300;
 
-    bool isPhase_1 = false;
+    bool isSpell = false , isPhase_1 = false;
 
     System.Random rnd;
 
@@ -37,6 +38,22 @@ public class stageBoss_1 : MonoBehaviour
         StartCoroutine(buttleStart());//登場＆無敵解除
     }
 
+    bool stopd = false;
+    private void Update()
+    {
+        if(slider == null)return;
+        if(slider.value <= (slider.maxValue / 10) * 3)//現HPが残り3割になったら
+        {
+            if (stopd == false)
+            { 
+                StopAllCoroutines();
+                stopd = true;
+                StartCoroutine(spell_1());
+            }
+            
+        }
+    }
+
     //被弾処理
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -45,17 +62,10 @@ public class stageBoss_1 : MonoBehaviour
             
             Destroy(collision.gameObject);
             HP--;
-            slider.value = HP-200;
+            if(isPhase_1) slider.value = HP- slider.maxValue * 2;
 
         }
     }
-
-
-
-
-
-
-
 
     
     IEnumerator buttleStart()
@@ -78,7 +88,7 @@ public class stageBoss_1 : MonoBehaviour
         bc.enabled = true;//当たり判定をture
 
 
-
+        isPhase_1 = true;
         StartCoroutine(phase_1());
     }
 
@@ -121,18 +131,17 @@ public class stageBoss_1 : MonoBehaviour
     {
         while (true)
         {
-            List<Vector2> clonePos = Raw_eimPos;
+            List<Vector2> clonePos = new List<Vector2>(Raw_eimPos);//コピー
 
             int rand_n = rnd.Next(clonePos.Count/2, clonePos.Count);
             for (int i = 0; i < rand_n; i++)
             {
-                Debug.Log("ナッカー");
                 int rand_index = rnd.Next(0, clonePos.Count);//インデックスをランダムに生成
                 Instantiate(phase_1_bullet[1], clonePos[rand_index], Quaternion.identity);//ランダムな座標に自機狙い弾を生成
                 clonePos.RemoveAt(rand_index);//使用したインデックスを削除
                 yield return new WaitForSeconds(1);
             }
-            Debug.Log("＼(^o^)／ｵﾜﾀ");
+
             yield return new WaitForSeconds(2);
         }
     }
@@ -185,5 +194,54 @@ public class stageBoss_1 : MonoBehaviour
         }
     }
 
+    Vector3 spell_myPos = new Vector3(0, 3, 0);
+    float spell_1_moveSpeed = 0.01f;
+
+    public GameObject enemy_image;
+
+    IEnumerator spell_1()
+    {
+        bc.enabled = false;//当たり判定を消す
+
+        
+
+        Vector3 velocity = spell_myPos - gameObject.transform.position;//ベクトルを計算
+        bool right = false;
+        if(velocity.x > 0)right = true;//進行方向が右（X方向のベクトルが正の値）の場合はtrue
+
+        GameObject Animetion_obj = Instantiate(enemy_image);//UIアニメーションを再生（スペルカード名）
+
+        //定位置まで移動
+        while (gameObject.transform.position != spell_myPos )
+        {
+            
+
+            Vector3 movePos = gameObject.transform.position + velocity * spell_1_moveSpeed;
+
+            if (right && movePos.x > 0) movePos = spell_myPos;//矯正
+            if (right == false && movePos.x < 0) movePos = spell_myPos;//矯正
+
+            rb.MovePosition(movePos);
+
+            yield return null;
+        }
+        
+        //UIアニメーションが再生されたら脱出
+        while (Animetion_obj.GetComponent<spell_animetion>().finish == false)
+        {
+            yield return null;
+        }
+
+        Destroy(Animetion_obj);
+
+        bc.enabled = true;//当たり判定を復活
+
+        //ここからスペルカードの弾幕を書く
+        while (true)
+        {
+            yield return null;
+        }
+
+    }
     }
 

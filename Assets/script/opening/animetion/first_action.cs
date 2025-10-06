@@ -36,7 +36,7 @@ public class first_action : MonoBehaviour
         }
 
     }
-    int test = 0;
+    
     IEnumerator opening()
     {
         bool loop = false;
@@ -44,7 +44,7 @@ public class first_action : MonoBehaviour
 
         while (loop == false)
         {
-            test++;
+            
 
             myRT.anchoredPosition += golePos * titleMoveSpeed;//titleオブジェクトは原点から始まるから、golePosがそのままベクトルになる
 

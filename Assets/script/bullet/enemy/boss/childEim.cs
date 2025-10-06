@@ -1,6 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
+using Unity.Mathematics;
+using static UnityEditor.Experimental.AssetDatabaseExperimental.AssetDatabaseCounters;
 
 public class childEim : MonoBehaviour
 {
@@ -15,24 +18,31 @@ public class childEim : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         big_Eim = GameObject.Find("bigEim").GetComponent<big_eim>();
         player = GameObject.Find("player");
+
         StartCoroutine(move());
     }
     IEnumerator move()
     {
-        while(finish == false)
-        {
-            yield return null;
-        }
+
+        yield return StartCoroutine(big_Eim.wait());
+
 
         Vector3 vect = transform.position - player.transform.position;
         float angle = Mathf.Atan2(vect.y, vect.x) * Mathf.Rad2Deg;//ベクトルをもとにRotationに入れる数値を計算
 
         transform.rotation = Quaternion.Euler(0, 0, angle + addRotation);
 
-        yield return StartCoroutine( big_Eim.wait());
-
+        float count_i = 0 ,add_i = 0.01f, moveSpeed_2=0;
         while (true)
         {
+            if (math.sin(count_i) < 0)
+            {
+                moveSpeed_2 = math.sin(count_i) * 0.05f;
+                count_i += add_i;
+            }
+            else moveSpeed_2 = 0.05f;
+
+
             if (finish)
             {
                 Vector3 movepos;

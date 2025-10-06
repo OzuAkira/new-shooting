@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 4066243305914805794}
   - component: {fileID: 776923020463445681}
   - component: {fileID: 2683637800487466343}
+  - component: {fileID: 5433660784299924563}
   m_Layer: 0
   m_Name: bigEim
   m_TagString: Untagged
@@ -166,3 +167,16 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.5
+--- !u!114 &5433660784299924563
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2125013492209736745}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 851d30b30a51890418bd2c1305c5997f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  destroy_Frame: 600

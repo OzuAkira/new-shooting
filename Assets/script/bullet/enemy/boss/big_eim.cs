@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Mathematics;
 using UnityEngine;
 
 public class big_eim : MonoBehaviour
@@ -80,18 +81,27 @@ public class big_eim : MonoBehaviour
         yield return StartCoroutine(wait());
 
 
-
         Vector3 vect = transform.position - playerObj.transform.position;
         float angle = Mathf.Atan2(vect.y, vect.x) * Mathf.Rad2Deg;//ベクトルをもとにRotationに入れる数値を計算
 
         transform.rotation = Quaternion.Euler(0, 0, angle + addRotation);
 
 
-        float moveSpeed_2 = 0.05f;//このMoveSpeedをSinを使って加速させようとおもてる。ChildEimのMoveSpeedの変数をここと紐づけたい
+        float moveSpeed_2 = 0.05f , count_i = 0 , add_i = 0.01f;//このMoveSpeedをSinを使って加速させようとおもてる。
+                                  //ChildEimのMoveSpeedの変数をここと紐づけたい
+        
         while (true)
         {
+            if (math.sin(count_i) < 0)
+            {
+                moveSpeed_2 = math.sin(count_i) * 0.05f;
+                count_i += add_i;
+            }
+            else moveSpeed_2 = 0.05f;
+
             
-                Vector3 movepos;
+
+            Vector3 movepos;
                 if (playerObj.activeSelf == false)
                 {
                     movepos = Vector3.down * moveSpeed_2;
@@ -102,10 +112,11 @@ public class big_eim : MonoBehaviour
             yield return null;
         }
 
+
     }
     public IEnumerator wait()
     {
-        float socond = 1f;
+        float socond = 1.5f;
         yield return new WaitForSeconds(socond);
     }
 

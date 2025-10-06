@@ -101,7 +101,7 @@ MonoBehaviour:
   finish: 0
   player: {fileID: 0}
   addRotation: -90
-  moveSpeed: 0.1
+  moveSpeed: 0.05
 --- !u!50 &1932344078261943330
 Rigidbody2D:
   serializedVersion: 4

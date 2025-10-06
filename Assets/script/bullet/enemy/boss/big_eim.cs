@@ -10,7 +10,7 @@ public class big_eim : MonoBehaviour
     Rigidbody2D rb;
     Vector2 move_vector;
     [SerializeField] Vector3 goale_1 = new Vector3(3,-1,0), goale_2 = new Vector3(-3,-1,0);
-    float moveSpeed = 0.01f;
+    float moveSpeed = 0.01f , addRotation = -90;
     void Start()
     {
         playerObj = GameObject.Find("player");
@@ -76,5 +76,37 @@ public class big_eim : MonoBehaviour
         {
             child.finish = true;
         }
+
+        yield return StartCoroutine(wait());
+
+
+
+        Vector3 vect = transform.position - playerObj.transform.position;
+        float angle = Mathf.Atan2(vect.y, vect.x) * Mathf.Rad2Deg;//ベクトルをもとにRotationに入れる数値を計算
+
+        transform.rotation = Quaternion.Euler(0, 0, angle + addRotation);
+
+
+        float moveSpeed_2 = 0.05f;//このMoveSpeedをSinを使って加速させようとおもてる。ChildEimのMoveSpeedの変数をここと紐づけたい
+        while (true)
+        {
+            
+                Vector3 movepos;
+                if (playerObj.activeSelf == false)
+                {
+                    movepos = Vector3.down * moveSpeed_2;
+                }
+                movepos = transform.position + transform.rotation * (Vector3.down * moveSpeed_2);//弾の向きに直進
+                rb.MovePosition(movepos);
+            
+            yield return null;
+        }
+
     }
+    public IEnumerator wait()
+    {
+        float socond = 1f;
+        yield return new WaitForSeconds(socond);
+    }
+
 }

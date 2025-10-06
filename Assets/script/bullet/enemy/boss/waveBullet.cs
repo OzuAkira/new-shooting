@@ -52,20 +52,63 @@ public class waveBullet : MonoBehaviour
         yield return null;
 
         Quaternion myRotation = gameObject.transform.rotation;
-        int shot_half_num = 3;
+        int shot_half_num = 4;
+        int inaterval = 6;
         while (true)
         {
-            for (int i = 1; i <= shot_half_num; i++)
+            for (int j = 0; j < inaterval; j++)//
             {
-                //Eulerと純粋なQuatarnionのコンフリクト
+                if (isMinus)
+                {
+                    for (int i = 1; i <= shot_half_num; i++)
+                    {
+                        //Eulerと純粋なQuatarnionのコンフリクト
 
-                Instantiate(_childBullet, gameObject.transform.position, Quaternion.Euler(0,0,myRotation.z));
-              //  Instantiate(_childBullet, gameObject.transform.position, Quaternion.Euler(0, 0, gameObject.transform.rotation.z + i*5));
-              //  Instantiate(_childBullet, gameObject.transform.position, Quaternion.Euler(0, 0, gameObject.transform.rotation.z - i * 5));
+                        Instantiate(_childBullet, gameObject.transform.position, Quaternion.Euler(0, 0, myRotation.eulerAngles.z - 90));
+
+                        Instantiate(_childBullet, gameObject.transform.position, Quaternion.Euler(0, 0, (myRotation.eulerAngles.z - 90) + i * 5));
+                        Instantiate(_childBullet, gameObject.transform.position, Quaternion.Euler(0, 0, (myRotation.eulerAngles.z - 90) - i * 5));
+                    }
+                }
+                else
+                {
+                    for (int i = 1; i <= shot_half_num; i++)
+                    {
+                        //Eulerと純粋なQuatarnionのコンフリクト
+
+                        Instantiate(_childBullet, gameObject.transform.position, Quaternion.Euler(0, 0, myRotation.eulerAngles.z + 90));
+
+                        Instantiate(_childBullet, gameObject.transform.position, Quaternion.Euler(0, 0, (myRotation.eulerAngles.z + 90) + i * 5));
+                        Instantiate(_childBullet, gameObject.transform.position, Quaternion.Euler(0, 0, (myRotation.eulerAngles.z + 90) - i * 5));
+                    }
+
+                }
+                yield return new WaitForSeconds(1);
             }
-            yield return new WaitForSeconds(1);
+            yield return new WaitForSeconds(2);
 
-
+            yield return StartCoroutine(my_move());
+        }
+    }
+    float sin_f = 0;
+    IEnumerator my_move()
+    {
+        
+        while (true)
+        {
+            float my_moveSpeed = 0.01f + math.sin(sin_f) , add_f = 0.01f;
+            sin_f+= add_f;
+            if (isMinus)
+            {
+                Vector2 movePos = transform.position + transform.rotation * (Vector3.left * my_moveSpeed);
+                rb.MovePosition(movePos);
+            }
+            else
+            {
+                Vector2 movePos = transform.position + transform.rotation * (Vector3.right * my_moveSpeed);
+                rb.MovePosition(movePos);
+            }
+                yield return null;
         }
     }
 }

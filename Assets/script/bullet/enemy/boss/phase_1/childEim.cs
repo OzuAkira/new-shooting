@@ -12,11 +12,17 @@ public class childEim : MonoBehaviour
     big_eim big_Eim;
     [SerializeField] float addRotation , moveSpeed = 0.01f;
 
+    public IEnumerator wait()
+    {
+        float socond = 1.5f;
+        yield return new WaitForSeconds(socond);
+    }
+
     Rigidbody2D rb;
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        big_Eim = GameObject.Find("bigEim").GetComponent<big_eim>();
+
         player = GameObject.Find("player");
 
         StartCoroutine(move());
@@ -24,7 +30,7 @@ public class childEim : MonoBehaviour
     IEnumerator move()
     {
 
-        yield return StartCoroutine(big_Eim.wait());
+        yield return StartCoroutine(wait());
 
 
         Vector3 vect = transform.position - player.transform.position;

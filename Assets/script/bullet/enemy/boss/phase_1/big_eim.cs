@@ -10,7 +10,7 @@ public class big_eim : MonoBehaviour
 
     Rigidbody2D rb;
     Vector2 move_vector;
-    [SerializeField] Vector3 goale_1 = new Vector3(3,-1,0), goale_2 = new Vector3(-3,-1,0);
+    public Vector3 goale_1 = new Vector3(3,-0.5f,0), goale_2 = new Vector3(-3,-0.5f, 0);
     float moveSpeed = 0.01f , addRotation = -90;
     void Start()
     {

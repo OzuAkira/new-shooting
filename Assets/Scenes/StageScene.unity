@@ -1198,6 +1198,10 @@ PrefabInstance:
       propertyPath: bom_obj
       value: 
       objectReference: {fileID: 2110147058083152517, guid: 75f55e7c33c18a64aadf23c42ed05b1b, type: 3}
+    - target: {fileID: -2882875174048004873, guid: be7fedc9267c9df4bb9fc2e8957be43d, type: 3}
+      propertyPath: straght_bullet
+      value: 
+      objectReference: {fileID: 3975430520059093986, guid: 8645a62edbdc05b4ca2993cf7768d3bd, type: 3}
     - target: {fileID: 1442697254049757302, guid: be7fedc9267c9df4bb9fc2e8957be43d, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

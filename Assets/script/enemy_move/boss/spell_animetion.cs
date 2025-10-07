@@ -54,7 +54,7 @@ public class spell_animetion : MonoBehaviour
 
             rectTransform.localScale += addScale;
             yield return null;
-            Debug.Log(image.color.a);
+            
         }
 
         finish = true;

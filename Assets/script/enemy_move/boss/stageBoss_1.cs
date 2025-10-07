@@ -302,29 +302,50 @@ public class stageBoss_1 : MonoBehaviour
         bc.enabled = true;//“–‚½‚è”»’è‚ð•œŠˆ
 
     }
-
+    public GameObject straght_bullet;
     IEnumerator phase_2()
     {
         yield return new WaitForSeconds(3);
 
         bom.SetActive(false);
+        isPhase_2 = true;
 
         float x_pos = 0 , y_pos = 0 , sin_i = 0 , add_i=0.0001f;
         float sum_vect = 0;
         Vector3 goale_pos = new Vector3(-4, -1.5f, 0);
         //Vector3 goale_vect = transform.position - goale_pos;
-        while (transform.position != goale_pos)
+        while (transform.position != new Vector3(-4, 1.5f, 0))
         {
             
             rb.MovePosition(gameObject.transform.position + goale_pos * sum_vect);
 
-            if (transform.position.x > 4) gameObject.transform.position = new Vector3(-4 , 1.5f,0);
+            if (transform.position.x < -4) gameObject.transform.position = new Vector3(-4 , 1.5f,0);
             else sum_vect += add_i;
             yield return null;
 
         }
-        Debug.Log("sun");
 
+        goale_pos = new Vector3(4, 0.75f, 0);
+        sum_vect = 0;
+
+        add_i = 0.0001f;
+        int i = 0;
+        yield return new WaitForSeconds(1);
+
+        while (transform.position != new Vector3(4, 3f, 0))
+        {
+
+            rb.MovePosition(gameObject.transform.position + goale_pos * sum_vect);
+
+            if (transform.position.x > 4) gameObject.transform.position = new Vector3(4, 3, 0);
+            else sum_vect += add_i;
+
+            i++;
+            if (i % 10 == 0) Instantiate(straght_bullet,transform.position,Quaternion.identity);
+
+            yield return null;
+
+        }
 
     }
 

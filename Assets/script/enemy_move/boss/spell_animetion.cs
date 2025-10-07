@@ -43,18 +43,20 @@ public class spell_animetion : MonoBehaviour
 
         yield return new WaitForSeconds(1);
 
-        finish = true;
+
 
         Vector3 addScale = new Vector3(0.01f,0.01f,0);
-        Debug.Log("point");
-        while (image.color.a > 0)//透明になるまで
+        
+        while (image.color.a >= 0)//透明になるまで
         {
-            color.a -= alphaSpeed*2;//1秒で不透明度100％
+            color.a -= alphaSpeed*2;//0.5秒で不透明度0％
             image.color = color;
 
             rectTransform.localScale += addScale;
             yield return null;
+            Debug.Log(image.color.a);
         }
 
+        finish = true;
     }
 }

@@ -15,12 +15,12 @@ public class stageBoss_1 : MonoBehaviour
 
     [SerializeField] GameObject[] phase_1_bullet;
 
-    GameObject playerObj;
+    GameObject playerObj , bom;
     Rigidbody2D rb;
     BoxCollider2D bc;
     Slider slider;float HP = 300;
 
-    bool isSpell = false , isPhase_1 = false;
+    bool isSpell = false , isPhase_1 = false , isPhase_2 = false;
 
     System.Random rnd;
 
@@ -35,10 +35,15 @@ public class stageBoss_1 : MonoBehaviour
 
         playerObj = GameObject.Find("player");
 
+        bom = Instantiate(bom_obj);
+
+        
+
         StartCoroutine(buttleStart());//登場＆無敵解除
     }
 
     bool stopd = false;
+
     private void Update()
     {
         if(slider == null)return;
@@ -55,15 +60,38 @@ public class stageBoss_1 : MonoBehaviour
     }
 
     //被弾処理
+    float spell_damage = 0.5f;
+    public List<GameObject> nextHP = new List<GameObject>();
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("player_bullet"))
         {
             
             Destroy(collision.gameObject);
-            HP--;
-            if(isPhase_1) slider.value = HP- slider.maxValue * 2;
+            if (isSpell) HP -= spell_damage;
+            else HP--;
 
+
+
+            if (isPhase_1) slider.value = HP - slider.maxValue * 2;
+            else if (isPhase_2) slider.value = HP - slider.maxValue;
+            if (slider.value <= 0 && isPhase_1)
+            {
+                bom.SetActive(true);//全敵弾を消す
+
+                StopAllCoroutines();//コルーチンを全て停止
+
+                isPhase_1 = false;//連続呼びを防止
+                Debug.Log("hp_image");
+                Image HP_0_image = nextHP[0].GetComponent<Image>();
+                UnityEngine.Color c = HP_0_image.color;
+                c = new Color(0.1509f,0.1309f,0.1217f);//色を指定
+                HP_0_image.color = c;//控えのHPバーを1つ黒にする
+
+                slider.value = slider.maxValue;//slider をMaxに戻す
+
+                StartCoroutine(phase_2());
+            }
         }
     }
 
@@ -82,6 +110,15 @@ public class stageBoss_1 : MonoBehaviour
         yield return new WaitForSeconds(2);
 
         GameObject _hp = Instantiate(HP_slider);//HPバーを表示
+
+        int nextHP_count = 2;
+        for (int i = 1; i <= nextHP_count; i++)//次のHPバーのオブジェクトを取得
+        {
+            nextHP.Add(_hp.transform.GetChild(i).gameObject);
+        }
+        //↓あとで消す
+        //nextHP[0].SetActive(false);
+
         slider = _hp.transform.Find("Slider").GetComponent<Slider>();//sliderを取得
         slider.value = HP;//HPを初期化
 
@@ -197,24 +234,49 @@ public class stageBoss_1 : MonoBehaviour
     Vector3 spell_myPos = new Vector3(0, 3, 0);
     float spell_1_moveSpeed = 0.01f;
 
-    public GameObject enemy_image;
+    public GameObject eim_bullet ,eim_bullet_2, wave_bullet;
 
     IEnumerator spell_1()
     {
+        yield return StartCoroutine(spell_Anime());
+        Debug.Log("spell_anime");
+        //ここからスペルカードの弾幕を書く
+        while (true)
+        {
+            Instantiate(wave_bullet, transform.position, quaternion.identity);
+            Instantiate(wave_bullet, transform.position, quaternion.identity).GetComponent<waveBullet>().isMinus = true;
+
+            Instantiate(eim_bullet, transform.position, quaternion.identity);
+            Instantiate(eim_bullet, transform.position, quaternion.identity).GetComponent<big_eim>().minus = true;
+
+            yield return new WaitForSeconds(4);
+
+            Instantiate(eim_bullet_2, transform.position, quaternion.identity);
+            Instantiate(eim_bullet_2, transform.position, quaternion.identity).GetComponent<big_eim>().minus = true;
+            yield return new WaitForSeconds(10);
+        }
+
+    }
+    public GameObject enemy_image , bom_obj;
+    IEnumerator spell_Anime()
+    {
         bc.enabled = false;//当たり判定を消す
+        isSpell = true;
 
         
+        yield return null;
+        bom.SetActive(true);
 
         Vector3 velocity = spell_myPos - gameObject.transform.position;//ベクトルを計算
         bool right = false;
-        if(velocity.x > 0)right = true;//進行方向が右（X方向のベクトルが正の値）の場合はtrue
+        if (velocity.x > 0) right = true;//進行方向が右（X方向のベクトルが正の値）の場合はtrue
 
         GameObject Animetion_obj = Instantiate(enemy_image);//UIアニメーションを再生（スペルカード名）
 
         //定位置まで移動
-        while (gameObject.transform.position != spell_myPos )
+        while (gameObject.transform.position != spell_myPos)
         {
-            
+
 
             Vector3 movePos = gameObject.transform.position + velocity * spell_1_moveSpeed;
 
@@ -225,23 +287,50 @@ public class stageBoss_1 : MonoBehaviour
 
             yield return null;
         }
-        
+
+        spell_animetion sa = Animetion_obj.transform.Find("enemy_image").gameObject.GetComponent<spell_animetion>();
         //UIアニメーションが再生されたら脱出
-        while (Animetion_obj.GetComponent<spell_animetion>().finish == false)
+        while (sa.finish == false)
         {
+            sa = Animetion_obj.transform.GetChild(0).gameObject.GetComponent<spell_animetion>();
             yield return null;
         }
 
         Destroy(Animetion_obj);
+        bom.SetActive(false);
 
         bc.enabled = true;//当たり判定を復活
 
-        //ここからスペルカードの弾幕を書く
-        while (true)
+    }
+
+    IEnumerator phase_2()
+    {
+        yield return new WaitForSeconds(3);
+
+        bom.SetActive(false);
+
+        float x_pos = 0 , y_pos = 0 , sin_i = 0 , add_i=0.0001f;
+        float sum_vect = 0;
+        Vector3 goale_pos = new Vector3(-4, -1.5f, 0);
+        //Vector3 goale_vect = transform.position - goale_pos;
+        while (transform.position != goale_pos)
         {
+            
+            rb.MovePosition(gameObject.transform.position + goale_pos * sum_vect);
+
+            if (transform.position.x > 4) gameObject.transform.position = new Vector3(-4 , 1.5f,0);
+            else sum_vect += add_i;
             yield return null;
+
         }
+        Debug.Log("sun");
+
 
     }
-    }
+
+
+
+
+
+}
 

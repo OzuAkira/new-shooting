@@ -101,6 +101,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isMinus: 0
+  _childBullet: {fileID: 689702724401330534, guid: 64cd2af511ae146439e48b511dc69c16, type: 3}
+  angle_i: 7
 --- !u!50 &3775339909523049278
 Rigidbody2D:
   serializedVersion: 4
@@ -185,4 +187,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 851d30b30a51890418bd2c1305c5997f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  destroy_Frame: 600
+  destroy_Frame: 1200

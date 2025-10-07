@@ -1202,6 +1202,18 @@ PrefabInstance:
       propertyPath: straght_bullet
       value: 
       objectReference: {fileID: 3975430520059093986, guid: 8645a62edbdc05b4ca2993cf7768d3bd, type: 3}
+    - target: {fileID: -2882875174048004873, guid: be7fedc9267c9df4bb9fc2e8957be43d, type: 3}
+      propertyPath: phase2_bullets.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: -2882875174048004873, guid: be7fedc9267c9df4bb9fc2e8957be43d, type: 3}
+      propertyPath: phase2_bullets.Array.data[0]
+      value: 
+      objectReference: {fileID: 3975430520059093986, guid: 3a8463154f2b3694f8071b944d8a7fdb, type: 3}
+    - target: {fileID: -2882875174048004873, guid: be7fedc9267c9df4bb9fc2e8957be43d, type: 3}
+      propertyPath: phase2_bullets.Array.data[1]
+      value: 
+      objectReference: {fileID: 3975430520059093986, guid: c98c80908ac660c47a259de60b60b8d1, type: 3}
     - target: {fileID: 1442697254049757302, guid: be7fedc9267c9df4bb9fc2e8957be43d, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

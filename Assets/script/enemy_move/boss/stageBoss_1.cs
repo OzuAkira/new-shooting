@@ -374,13 +374,25 @@ public class stageBoss_1 : MonoBehaviour
 
             rb.MovePosition(gameObject.transform.position + goale_pos * sum_vect);
 
-            if (transform.position.x <= 2) Instantiate(phase2_bullets[2], gameObject.transform.position, Quaternion.identity);//Ž©‹@‘_‚¢‚ÌŠgŽU’e
-            //g–‚‹½EX‚Ì’†ƒ{ƒX“|‚µ‚½’¼Œã‚É—d¸‚ªŒ‚‚Á‚Ä‚­‚éƒAƒŒ ‚ðˆê”­
+            if (transform.position.x <= 2 && shoted == false)
+            {
+                shoted = true;
+                Instantiate(phase2_bullets[2], gameObject.transform.position, Quaternion.identity);//Ž©‹@‘_‚¢‚ÌŠgŽU’e
+                                                                                                   //g–‚‹½EX‚Ì’†ƒ{ƒX“|‚µ‚½’¼Œã‚É—d¸‚ªŒ‚‚Á‚Ä‚­‚éƒAƒŒ ‚ðˆê”­
+            }
             if (transform.position.x < 0) gameObject.transform.position = new Vector3(0, 3, 0);
             else sum_vect += add_i;
 
             yield return null;
 
+        }
+        int gravity_int = 50;
+
+        for(int ii = 0; ii < gravity_int; ii++)
+        {
+           Instantiate(phase2_bullets[3] , transform.position ,Quaternion.identity);
+
+            yield return null; yield return null;//2frame‘Ò‚Â
         }
 
     }

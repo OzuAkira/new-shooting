@@ -89,6 +89,7 @@ public class stageBoss_1 : MonoBehaviour
                 HP_0_image.color = c;//çTÇ¶ÇÃHPÉoÅ[Ç1Ç¬çïÇ…Ç∑ÇÈ
 
                 slider.value = slider.maxValue;//slider ÇMaxÇ…ñﬂÇ∑
+                bc.enabled = false;//ìñÇΩÇËîªíËÇè¡ÇµÇΩ
 
                 StartCoroutine(phase_2());
             }
@@ -253,7 +254,7 @@ public class stageBoss_1 : MonoBehaviour
 
             Instantiate(eim_bullet_2, transform.position, quaternion.identity);
             Instantiate(eim_bullet_2, transform.position, quaternion.identity).GetComponent<big_eim>().minus = true;
-            yield return new WaitForSeconds(10);
+            yield return new WaitForSeconds(6);
         }
 
     }
@@ -302,29 +303,85 @@ public class stageBoss_1 : MonoBehaviour
         bc.enabled = true;//ìñÇΩÇËîªíËÇïúäà
 
     }
-
+    public GameObject[] phase2_bullets;
     IEnumerator phase_2()
     {
         yield return new WaitForSeconds(3);
 
+        bc.enabled = true;//ìñÇΩÇËîªíËÇâÒïú
+
         bom.SetActive(false);
+        isPhase_2 = true;
 
         float x_pos = 0 , y_pos = 0 , sin_i = 0 , add_i=0.0001f;
         float sum_vect = 0;
         Vector3 goale_pos = new Vector3(-4, -1.5f, 0);
         //Vector3 goale_vect = transform.position - goale_pos;
-        while (transform.position != goale_pos)
+        while (transform.position != new Vector3(-4, 1.5f, 0))
         {
             
             rb.MovePosition(gameObject.transform.position + goale_pos * sum_vect);
 
-            if (transform.position.x > 4) gameObject.transform.position = new Vector3(-4 , 1.5f,0);
+            if (transform.position.x < -4) gameObject.transform.position = new Vector3(-4 , 1.5f,0);
             else sum_vect += add_i;
             yield return null;
 
         }
-        Debug.Log("sun");
 
+        goale_pos = new Vector3(4, 0.75f, 0);
+        sum_vect = 0;
+
+        add_i = 0.0001f;
+        int i = 0;
+        yield return new WaitForSeconds(1);
+
+        System.Random random = new System.Random();
+        int loop_count = 3;
+
+        while (transform.position != new Vector3(4, 3f, 0))
+        {
+
+            rb.MovePosition(gameObject.transform.position + goale_pos * sum_vect);
+
+            if (transform.position.x > 4) gameObject.transform.position = new Vector3(4, 3, 0);
+            else sum_vect += add_i;
+
+            i++;
+            if (i % 8 == 0)
+            {
+                for (int j = 0; j < loop_count; j++)
+                {
+                    int ran_int = random.Next(-25, 25);
+                    int ran_speed = random.Next(3, 10);
+
+                    Instantiate(phase2_bullets[1], transform.position, Quaternion.Euler(0, 0, (i / 8) + ran_int))
+                        .GetComponent<Straight_move>().moveSpeed = ran_speed * 0.01f;
+                }
+            }
+            yield return null;
+
+        }
+        yield return new WaitForSeconds(1);
+
+        goale_pos = new Vector3(-1, 0, 0);
+        sum_vect = 0;
+
+        add_i = 0.0001f;
+
+        bool shoted = false;
+        while (transform.position != new Vector3(0, 3f, 0))
+        {
+
+            rb.MovePosition(gameObject.transform.position + goale_pos * sum_vect);
+
+            if (transform.position.x <= 2) Instantiate(phase2_bullets[2], gameObject.transform.position, Quaternion.identity);//é©ã@ë_Ç¢ÇÃägéUíe
+            //çgñÇãΩEXÇÃíÜÉ{ÉXì|ÇµÇΩíºå„Ç…ódê∏Ç™åÇÇ¡ÇƒÇ≠ÇÈÉAÉå ÇàÍî≠
+            if (transform.position.x < 0) gameObject.transform.position = new Vector3(0, 3, 0);
+            else sum_vect += add_i;
+
+            yield return null;
+
+        }
 
     }
 

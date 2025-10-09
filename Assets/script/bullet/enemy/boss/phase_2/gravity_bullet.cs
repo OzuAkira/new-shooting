@@ -9,24 +9,15 @@ public class gravity_bullet : MonoBehaviour
     Rigidbody2D rb;
     float g;
     Vector3 movePos;
+    float rand_range = 1f;
     void Start()
     {
-        movePos = transform.position;
+        movePos = new Vector3( transform.position.x , transform.position.y);
         rb = GetComponent<Rigidbody2D>();
-        StartCoroutine(up_move());
-    }
-    IEnumerator up_move()
-    {
-        float x = 0 , a = 0.01f;
-        while (true)
-        {
-            Debug.Log(math.cos(x));
-            x += a;
-        }
-    }
-    IEnumerator down_move()
-    {
-        yield return null;
+        rb.gravityScale = 0.25f;
+        float r = UnityEngine.Random.Range(-rand_range, rand_range);
+
+        rb.AddForce(new Vector2(r, 5+r/2), ForceMode2D.Impulse);
     }
             
 }

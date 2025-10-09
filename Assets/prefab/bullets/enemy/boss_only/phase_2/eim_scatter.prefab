@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: -4034405725374250747}
   - component: {fileID: 8124722883027301847}
   - component: {fileID: 4070373244860637053}
+  - component: {fileID: -4951726647779888364}
   m_Layer: 0
   m_Name: eim_scatter
   m_TagString: enemy_bullet
@@ -164,3 +165,16 @@ MonoBehaviour:
   moveSpeed: 0.15
   addRotation: 270
   child: {fileID: 1983434155702325956, guid: 0a5985244faf95349a297368c1cf4c95, type: 3}
+--- !u!114 &-4951726647779888364
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1983434155702325956}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 851d30b30a51890418bd2c1305c5997f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  destroy_Frame: 300

@@ -13,9 +13,10 @@ GameObject:
   - component: {fileID: 5719241892754669537}
   - component: {fileID: 7502499178734755347}
   - component: {fileID: -6752392517616347857}
+  - component: {fileID: -2364909299019520266}
   m_Layer: 0
   m_Name: gravity_bullet
-  m_TagString: Untagged
+  m_TagString: enemy_bullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -137,7 +138,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 0
+  m_GravityScale: 1
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -161,3 +162,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 11f0f187c136dc4458e0b1a73c019030, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &-2364909299019520266
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 605612414624896301}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 851d30b30a51890418bd2c1305c5997f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  destroy_Frame: 400

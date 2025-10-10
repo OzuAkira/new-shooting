@@ -15,10 +15,12 @@ public class stageBoss_1 : MonoBehaviour
 
     [SerializeField] GameObject[] phase_1_bullet;
 
+
     GameObject playerObj , bom;
     Rigidbody2D rb;
     BoxCollider2D bc;
-    Slider slider;float HP = 300;
+    Slider slider;
+    public float HP = 300;
 
     bool isSpell = false , isPhase_1 = false , isPhase_2 = false;
 
@@ -49,17 +51,25 @@ public class stageBoss_1 : MonoBehaviour
         if(slider == null)return;
         if(slider.value <= (slider.maxValue / 10) * 3)//現HPが残り3割になったら
         {
-            if (stopd == false)
+            if (stopd == false　&& isPhase_1)
             { 
                 StopAllCoroutines();
                 stopd = true;
                 StartCoroutine(spell_1());
             }
-            
+            else if (stopd == false && isPhase_2)
+            {
+                StopAllCoroutines();
+                stopd = true;
+                StartCoroutine(spell_2());
+            }
+
         }
     }
 
     //被弾処理
+
+    //ここの数値は要検討
     float spell_damage = 0.5f;
     public List<GameObject> nextHP = new List<GameObject>();
     private void OnTriggerEnter2D(Collider2D collision)
@@ -82,6 +92,7 @@ public class stageBoss_1 : MonoBehaviour
                 StopAllCoroutines();//コルーチンを全て停止
 
                 isPhase_1 = false;//連続呼びを防止
+                stopd = false;
                 Debug.Log("hp_image");
                 Image HP_0_image = nextHP[0].GetComponent<Image>();
                 UnityEngine.Color c = HP_0_image.color;
@@ -93,6 +104,7 @@ public class stageBoss_1 : MonoBehaviour
 
                 StartCoroutine(phase_2());
             }
+            //ここにボスが撃破された時の処理を書く
         }
     }
 
@@ -239,8 +251,9 @@ public class stageBoss_1 : MonoBehaviour
 
     IEnumerator spell_1()
     {
-        yield return StartCoroutine(spell_Anime());
-        Debug.Log("spell_anime");
+        yield return StartCoroutine(spell_Anime(1));//メソッドの名前に（spell_1）の1にあわせる
+        //本来は0の方が好ましい
+        
         //ここからスペルカードの弾幕を書く
         while (true)
         {
@@ -258,8 +271,9 @@ public class stageBoss_1 : MonoBehaviour
         }
 
     }
-    public GameObject enemy_image , bom_obj;
-    IEnumerator spell_Anime()
+    public GameObject[] enemy_image;
+    public GameObject bom_obj ;
+    IEnumerator spell_Anime(int image_num)
     {
         bc.enabled = false;//当たり判定を消す
         isSpell = true;
@@ -272,7 +286,7 @@ public class stageBoss_1 : MonoBehaviour
         bool right = false;
         if (velocity.x > 0) right = true;//進行方向が右（X方向のベクトルが正の値）の場合はtrue
 
-        GameObject Animetion_obj = Instantiate(enemy_image);//UIアニメーションを再生（スペルカード名）
+        GameObject Animetion_obj = Instantiate(enemy_image[image_num]);//UIアニメーションを再生（スペルカード名）
 
         //定位置まで移動
         while (gameObject.transform.position != spell_myPos)
@@ -313,7 +327,7 @@ public class stageBoss_1 : MonoBehaviour
         bom.SetActive(false);
         isPhase_2 = true;
 
-        float x_pos = 0 , y_pos = 0 , sin_i = 0 , add_i=0.0001f;
+        float add_i=0.0001f;
         float sum_vect = 0;
         Vector3 goale_pos = new Vector3(-4, -1.5f, 0);
         //Vector3 goale_vect = transform.position - goale_pos;
@@ -346,15 +360,17 @@ public class stageBoss_1 : MonoBehaviour
             if (transform.position.x > 4) gameObject.transform.position = new Vector3(4, 3, 0);
             else sum_vect += add_i;
 
+            int frame = 10;
+
             i++;
-            if (i % 8 == 0)
+            if (i % frame == 0)
             {
                 for (int j = 0; j < loop_count; j++)
                 {
                     int ran_int = random.Next(-25, 25);
                     int ran_speed = random.Next(3, 10);
 
-                    Instantiate(phase2_bullets[1], transform.position, Quaternion.Euler(0, 0, (i / 8) + ran_int))
+                    Instantiate(phase2_bullets[1], transform.position, Quaternion.Euler(0, 0, (i / frame) + ran_int))
                         .GetComponent<Straight_move>().moveSpeed = ran_speed * 0.01f;
                 }
             }
@@ -394,9 +410,54 @@ public class stageBoss_1 : MonoBehaviour
 
             yield return null; yield return null;//2frame待つ
         }
-
+        StartCoroutine(phase_2());//繰り返し
     }
+    [SerializeField] Vector2 wall_bullet_Pos1, wall_bullet_Pos2;
+    IEnumerator spell_2()
+    {
+        yield return StartCoroutine(spell_Anime(2));
+        StartCoroutine(wallShot());
 
+        float i = 0, add_i = 0.01f;
+        int shotCount = 0 , interval = 12;
+        while (true)
+        {
+            if (shotCount <= interval)
+            {
+                float angle = math.sin(i);
+                i += add_i;
+                Instantiate(phase2_bullets[5], transform.position, Quaternion.Euler(0, 0, angle));
+
+                for (int t = 0; t < 10; t++)//10フレーム待機
+                    yield return null;
+                shotCount++;
+            }
+            else
+            {
+                shotCount = 0;
+                yield return new WaitForSeconds(1);
+            }
+        }
+        
+    }
+    IEnumerator wallShot()
+    {
+        int wall_n = 4;
+        while (true) 
+        {
+            for (int i = 0; i < wall_n; i++)
+            {
+                Instantiate(phase2_bullets[4], wall_bullet_Pos1, Quaternion.identity);
+                Instantiate(phase2_bullets[4], wall_bullet_Pos2, Quaternion.Euler(0, 0, 180));
+                //マイナス座標に出現させる
+                Instantiate(phase2_bullets[4], -wall_bullet_Pos2, Quaternion.identity);
+                Instantiate(phase2_bullets[4], -wall_bullet_Pos1, Quaternion.Euler(0, 0, 180));
+
+            }
+            yield return new WaitForSeconds(1f);
+        }
+    }
+    
 
 
 

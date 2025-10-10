@@ -16,7 +16,11 @@ public class stageBoss_1 : MonoBehaviour
     [SerializeField] GameObject[] phase_1_bullet;
 
 
-    GameObject playerObj , bom;
+    GameObject playerObj , bom , canvas , score;
+
+    Text _text;
+    public int hit_point = 1, kill_point = 10, now_score;
+
     Rigidbody2D rb;
     BoxCollider2D bc;
     Slider slider;
@@ -39,7 +43,11 @@ public class stageBoss_1 : MonoBehaviour
 
         bom = Instantiate(bom_obj);
 
-        
+        //scoreä÷åW
+        canvas = GameObject.Find("Canvas_2");
+        score = canvas.transform.Find("score").gameObject;
+
+
 
         StartCoroutine(buttleStart());//ìoèÍÅïñ≥ìGâèú
     }
@@ -78,6 +86,13 @@ public class stageBoss_1 : MonoBehaviour
         {
             
             Destroy(collision.gameObject);
+            //score ÇÃëùÇ©
+            _text = score.GetComponent<Text>();
+            now_score = int.Parse(_text.text);
+
+            now_score += hit_point;
+            _text.text = now_score.ToString();
+
             if (isSpell) HP -= spell_damage;
             else HP--;
 

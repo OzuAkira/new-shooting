@@ -163,7 +163,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   HP: 1
+  hit_point: 1
+  kill_point: 10
+  now_score: 0
   hpStoper: 0
+  random_switch: 1
+  item_1: {fileID: 1718769781337574405, guid: 2d0b6bc6aea8572479ce5daeb7814c18, type: 3}
+  item_2: {fileID: 1718769781337574405, guid: 6bd35d4bed76a934c9a7546846ce521f, type: 3}
 --- !u!114 &3249297040881455783
 MonoBehaviour:
   m_ObjectHideFlags: 0

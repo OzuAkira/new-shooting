@@ -9,7 +9,8 @@ TagManager:
   - enemy
   - enemy_bullet
   - power
-  - point
+  - item
+  - bom
   layers:
   - Default
   - TransparentFX

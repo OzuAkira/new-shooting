@@ -12,9 +12,10 @@ GameObject:
   - component: {fileID: 5023077278302199804}
   - component: {fileID: 4738232718244646097}
   - component: {fileID: 8914326184940690138}
+  - component: {fileID: -8523528534943577057}
   m_Layer: 0
   m_Name: big_power
-  m_TagString: power
+  m_TagString: item
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -101,7 +102,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 0.1
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -158,3 +159,19 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &-8523528534943577057
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1718769781337574405}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 945fa623e5f970649a2f8fe5ddba473a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  have_power: 10
+  have_point: 10
+  y_force: 2
+  isPoint: 0

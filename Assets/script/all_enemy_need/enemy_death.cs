@@ -8,7 +8,8 @@ public class enemy_death : MonoBehaviour
     GameObject GM , score , canvas;
     Text _text;
     public int HP = 1, hit_point = 1,kill_point = 10,now_score;
-    public bool hpStoper = false;
+    public bool hpStoper = false , random_switch = false;
+    public GameObject item_1,item_2;
     private void Awake()
     {
         canvas = GameObject.Find("Canvas_2");
@@ -37,6 +38,12 @@ public class enemy_death : MonoBehaviour
                 now_score += kill_point;
                 _text.text = now_score.ToString();
 
+                if (random_switch)
+                {
+                    if (UnityEngine.Random.Range(0f, 1f) > 0.5f) Instantiate(item_1, transform.position, Quaternion.identity);
+                    else Instantiate(item_2, transform.position,Quaternion.identity);
+                }
+                else Instantiate(item_1, transform.position, Quaternion.identity);
                 //このタイミングで音を再生するのもアリ
 
                 Destroy(gameObject);

@@ -41,7 +41,8 @@ public class enemy_death : MonoBehaviour
                 if (random_switch)
                 {
                     if (UnityEngine.Random.Range(0f, 1f) > 0.5f) Instantiate(item_1, transform.position, Quaternion.identity);
-                    else Instantiate(item_2, transform.position,Quaternion.identity);
+                    else if (item_2 == null) return;
+                    else Instantiate(item_2, transform.position, Quaternion.identity);
                 }
                 else Instantiate(item_1, transform.position, Quaternion.identity);
                 //このタイミングで音を再生するのもアリ

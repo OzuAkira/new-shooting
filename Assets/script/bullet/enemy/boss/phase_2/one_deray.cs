@@ -12,7 +12,7 @@ public class one_deray : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         StartCoroutine(first());
     }
-    float base_speed = 0.1f, sin_s = 0 , i = 0 , add_i = 0.0001f;
+    float base_speed = 0.1f, i = 0 , add_i = 0.0001f;
 
     Vector3 movePos;
     IEnumerator first()

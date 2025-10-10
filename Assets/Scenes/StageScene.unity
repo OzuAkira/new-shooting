@@ -1195,6 +1195,14 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: -2882875174048004873, guid: be7fedc9267c9df4bb9fc2e8957be43d, type: 3}
+      propertyPath: HP
+      value: 200
+      objectReference: {fileID: 0}
+    - target: {fileID: -2882875174048004873, guid: be7fedc9267c9df4bb9fc2e8957be43d, type: 3}
+      propertyPath: nextHP.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -2882875174048004873, guid: be7fedc9267c9df4bb9fc2e8957be43d, type: 3}
       propertyPath: wall_bullet_Pos1.x
       value: 3
       objectReference: {fileID: 0}
@@ -1452,7 +1460,7 @@ CircleCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1687065374}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IncludeLayers:

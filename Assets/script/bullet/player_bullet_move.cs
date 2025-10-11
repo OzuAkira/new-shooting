@@ -5,9 +5,9 @@ using UnityEngine;
 
 public class player_bullet_move : MonoBehaviour
 {
-    [SerializeField]float moveSpeed = 100f;
-    [SerializeField] int destroy_Fram = 60;
-    int i;
+    [SerializeField]float moveSpeed = 0.1f;
+    [SerializeField] int destroy_Fram = 6;
+    
     CapsuleCollider2D cc;
     Rigidbody2D rb;
     private void Awake()
@@ -18,12 +18,11 @@ public class player_bullet_move : MonoBehaviour
 
     private void Update()
     {
-        if (i >= destroy_Fram)Destroy(gameObject);
-        else
-        {
-            i++;
-            rb.velocity = new Vector2(0, moveSpeed);//^ã‚Éi‚Þ
-        }
+        if (transform.position.y > destroy_Fram) Destroy(gameObject);
+        Vector3 movepos;
+        movepos = transform.position + transform.rotation * (Vector3.up * moveSpeed);
+        rb.MovePosition(movepos);
+        
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {

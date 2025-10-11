@@ -105,6 +105,7 @@ MonoBehaviour:
   phase_1_bullet:
   - {fileID: 3975430520059093986, guid: 8645a62edbdc05b4ca2993cf7768d3bd, type: 3}
   - {fileID: 3769863703786932473, guid: 03da78e256a454a4782c74c4efb74909, type: 3}
+  HP: 200
   nextHP: []
   Raw_eimPos:
   - {x: 2.33, y: 0.77}
@@ -122,13 +123,20 @@ MonoBehaviour:
   eim_bullet: {fileID: 2125013492209736745, guid: f780db722bb9f5c4e92b121b62a125ce, type: 3}
   eim_bullet_2: {fileID: 2125013492209736745, guid: 025c76ad91da17e4a842282fa9f7f665, type: 3}
   wave_bullet: {fileID: 2544864368912315015, guid: 7ab3414b7ed8d854da2f352f961467a1, type: 3}
-  enemy_image: {fileID: 3357411028948348872, guid: d0dfdbbcae47d40418ab6660589387e0, type: 3}
+  enemy_image:
+  - {fileID: 3357411028948348872, guid: d0dfdbbcae47d40418ab6660589387e0, type: 3}
+  - {fileID: 3357411028948348872, guid: d0dfdbbcae47d40418ab6660589387e0, type: 3}
+  - {fileID: 3357411028948348872, guid: d0dfdbbcae47d40418ab6660589387e0, type: 3}
   bom_obj: {fileID: 2110147058083152517, guid: 75f55e7c33c18a64aadf23c42ed05b1b, type: 3}
   phase2_bullets:
   - {fileID: 3975430520059093986, guid: 3a8463154f2b3694f8071b944d8a7fdb, type: 3}
   - {fileID: 3975430520059093986, guid: c98c80908ac660c47a259de60b60b8d1, type: 3}
   - {fileID: 1983434155702325956, guid: 3b36cc6e075c30e44adb40b433fd8863, type: 3}
   - {fileID: 605612414624896301, guid: dd6809fd187685644bbf9f49a5889443, type: 3}
+  - {fileID: 5753089214137506718, guid: 7fbb0e5abe7a4df43a3833c821e4991b, type: 3}
+  - {fileID: 8871568695332194635, guid: 772182831df83bd499dc14bac1f43b5d, type: 3}
+  wall_bullet_Pos1: {x: 3, y: 5}
+  wall_bullet_Pos2: {x: 1.5, y: -5}
 --- !u!50 &8279592422438214213
 Rigidbody2D:
   serializedVersion: 4

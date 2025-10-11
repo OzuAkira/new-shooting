@@ -9,8 +9,8 @@ public class stage_1 : MonoBehaviour
 {
     [SerializeField] UnityEngine.UI.Image image;
 
-    public GameObject enemy_1, enemy_2, enemy_3, enemy_4 , enemy_5 , enemy_6 , enemy_7;
-    public Vector2 enemy1_2_pos, enemy3_pos, enemy4_pos , enemy7_pos;
+    public GameObject enemy_1, enemy_2, enemy_3, enemy_4 , enemy_5 , enemy_6 , enemy_7 ,boss;
+    public Vector2 enemy1_2_pos, enemy3_pos, enemy4_pos , enemy7_pos , boss_Pos;
 
     int count = 10;
 
@@ -138,7 +138,7 @@ public class stage_1 : MonoBehaviour
         }
         yield return new WaitForSeconds(3);
 
-        Debug.Log("complete!");
+        Instantiate(boss, boss_Pos, Quaternion.identity);
     }
     
 

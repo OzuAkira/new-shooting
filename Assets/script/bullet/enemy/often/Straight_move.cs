@@ -5,7 +5,7 @@ using UnityEngine;
 public class Straight_move : MonoBehaviour
 {
     Rigidbody2D rb;
-    Vector3 myPos;
+    
     public float moveSpeed = 0.1f;
     private void Start()
     {

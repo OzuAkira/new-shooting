@@ -115,6 +115,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   HP: 10
+  hit_point: 1
+  kill_point: 10
+  now_score: 0
+  hpStoper: 0
+  random_switch: 1
+  item_1: {fileID: 1718769781337574405, guid: 2d0b6bc6aea8572479ce5daeb7814c18, type: 3}
+  item_2: {fileID: 1718769781337574405, guid: 06aac7bb517be1c48ad48d678c066459, type: 3}
 --- !u!50 &-5896995721575307556
 Rigidbody2D:
   serializedVersion: 4

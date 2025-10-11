@@ -38,4 +38,16 @@ public class player_bom : MonoBehaviour
 
         _do = false;
     }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("bom"))
+        {
+            res._bom++;
+            res.textChange(" Bom   : ", res._bom, bomText);//UIの更新はresurectionの関数を使用
+
+            res = GM.GetComponent<Resurrection>();//resurectionの更新
+
+            Destroy(collision.gameObject);
+        }
+    }
 }

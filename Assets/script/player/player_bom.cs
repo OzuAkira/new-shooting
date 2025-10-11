@@ -8,14 +8,13 @@ public class player_bom : MonoBehaviour
     public GameObject bom , GM;
     Resurrection res;
     [SerializeField] Text bomText;
-    CircleCollider2D cc;
     bool _do = false;
 
     public bool Invincible = false;
     private void Start()
     {
         res = GM.GetComponent<Resurrection>();
-        cc = gameObject.GetComponent<CircleCollider2D>();
+        
     }
     void OnBom()
     {
@@ -40,19 +39,5 @@ public class player_bom : MonoBehaviour
 
         _do = false;
     }
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.gameObject.CompareTag("bom"))
-        {
-            res = GM.GetComponent<Resurrection>();//resurectionの更新
-            Debug.Log(res._bom);
-
-
-            res._bom++;
-            res.textChange(" Bom   : ", res._bom, bomText);//UIの更新はresurectionの関数を使用
-
-            
-            Destroy(collision.gameObject);
-        }
-    }
+    
 }

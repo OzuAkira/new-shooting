@@ -5,7 +5,7 @@ using UnityEngine.InputSystem;
 
 public class player_move : MonoBehaviour
 {
-    Rigidbody2D rb;//rb.velocityで動かす用
+    Rigidbody2D rb ;//rb.velocityで動かす用
     public Vector2 axis;//OnMoveの入力値を保存
 
     public float moveSpeed = 1;
@@ -17,6 +17,7 @@ public class player_move : MonoBehaviour
     [SerializeField] private string _slowActionName = "Slow";// アクション名
     private InputAction _slowAction;// アクションのコンポーネント
 
+    GameObject child_Obj;
     private void Awake()
     {
         _playerInput = GetComponent<PlayerInput>();
@@ -26,6 +27,8 @@ public class player_move : MonoBehaviour
     private void Start()
     {
         rb = gameObject.GetComponent<Rigidbody2D>();
+        child_Obj = gameObject.transform.GetChild(0).gameObject;
+
         neutral_Speed = moveSpeed;//非・低速時の移動速度
         half_Speed = moveSpeed/2;//低速時の移動速度
     }
@@ -52,5 +55,6 @@ public class player_move : MonoBehaviour
 
         //移動処理
         rb.velocity = new Vector2(axis.x, axis.y) * moveSpeed;
+        child_Obj.transform.position = gameObject.transform.position;
     }
 }

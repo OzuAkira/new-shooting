@@ -8,7 +8,7 @@ public class enemy_death : MonoBehaviour
     GameObject GM , score , canvas;
     Text _text;
     public int HP = 1, hit_point = 1,kill_point = 10,now_score;
-    public bool hpStoper = false , random_switch = false;
+    public bool hpStoper = false , random_switch = false , isDrop = false;
     public GameObject item_1,item_2;
     private void Awake()
     {
@@ -44,8 +44,12 @@ public class enemy_death : MonoBehaviour
                     else if (item_2 == null) Destroy(gameObject);
                     else Instantiate(item_2, transform.position, Quaternion.identity);
                 }
-                else Instantiate(item_1, transform.position, Quaternion.identity);
-                //このタイミングで音を再生するのもアリ
+                else if(isDrop == false)
+                {
+                    isDrop = true;
+                    Instantiate(item_1, transform.position, Quaternion.identity);
+                }
+                    //このタイミングで音を再生するのもアリ
 
                 Destroy(gameObject);
             }

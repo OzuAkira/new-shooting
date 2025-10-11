@@ -28,6 +28,9 @@ public class enemy_bullet : MonoBehaviour
         {
             GameObject player = collision.gameObject;
             Resurrection resu = GM.GetComponent<Resurrection>();
+            player_bom player_Bom = collision.GetComponent<player_bom>();
+
+            if (player_Bom.Invincible) return;//ボム使用時なら何も起きない
 
             if (resu.isResurrection == false)//無敵時間でなければ被弾する
             {

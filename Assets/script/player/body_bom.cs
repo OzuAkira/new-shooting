@@ -6,7 +6,7 @@ public class body_bom : MonoBehaviour
 {
     private void Awake()
     {
-        gameObject.SetActive(false);
+        //gameObject.SetActive(false);
     }
     private void OnTriggerStay2D(Collider2D collision)
     {

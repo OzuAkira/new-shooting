@@ -41,7 +41,7 @@ public class enemy_death : MonoBehaviour
                 if (random_switch)
                 {
                     if (UnityEngine.Random.Range(0f, 1f) > 0.5f) Instantiate(item_1, transform.position, Quaternion.identity);
-                    else if (item_2 == null) return;
+                    else if (item_2 == null) Destroy(gameObject);
                     else Instantiate(item_2, transform.position, Quaternion.identity);
                 }
                 else Instantiate(item_1, transform.position, Quaternion.identity);
@@ -52,9 +52,11 @@ public class enemy_death : MonoBehaviour
         }
         else if (collision.CompareTag("Player"))
         {
-            Debug.Log("miss!");
+            player_bom player_b = collision.GetComponent<player_bom>();
             Resurrection resu = GM.GetComponent<Resurrection>();
+            if (player_b.Invincible) return;
             if (resu.isResurrection == false) collision.gameObject.SetActive(false);
+            
         }
     }
 }

@@ -10,6 +10,8 @@ public class player_bom : MonoBehaviour
     [SerializeField] Text bomText;
     CircleCollider2D cc;
     bool _do = false;
+
+    public bool Invincible = false;
     private void Start()
     {
         res = GM.GetComponent<Resurrection>();
@@ -29,12 +31,12 @@ public class player_bom : MonoBehaviour
         res = GM.GetComponent<Resurrection>();//resurectionの更新
 
         bom.SetActive(true);
-        cc.enabled = false;
+        Invincible = true;
 
         yield return new WaitForSeconds(3);//ボム持続時間
 
         bom.SetActive(false);
-        cc.enabled = true;
+        Invincible = false;
 
         _do = false;
     }
@@ -42,11 +44,14 @@ public class player_bom : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("bom"))
         {
+            res = GM.GetComponent<Resurrection>();//resurectionの更新
+            Debug.Log(res._bom);
+
+
             res._bom++;
             res.textChange(" Bom   : ", res._bom, bomText);//UIの更新はresurectionの関数を使用
 
-            res = GM.GetComponent<Resurrection>();//resurectionの更新
-
+            
             Destroy(collision.gameObject);
         }
     }

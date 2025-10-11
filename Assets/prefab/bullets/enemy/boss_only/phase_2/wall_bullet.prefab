@@ -11,9 +11,9 @@ GameObject:
   - component: {fileID: 7647759639944424609}
   - component: {fileID: 1005922930304756568}
   - component: {fileID: 3170764712749834609}
-  - component: {fileID: 5915090543033256051}
   - component: {fileID: 5576292306240511802}
   - component: {fileID: 4303718935916765189}
+  - component: {fileID: 5787658589026953112}
   m_Layer: 0
   m_Name: wall_bullet
   m_TagString: enemy_bullet
@@ -115,8 +115,34 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!58 &5915090543033256051
-CircleCollider2D:
+--- !u!114 &5576292306240511802
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5753089214137506718}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4ae850417582c2940b82c9716660ecb9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveSpeed: 0.05
+--- !u!114 &4303718935916765189
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5753089214137506718}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 851d30b30a51890418bd2c1305c5997f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  destroy_Frame: 800
+--- !u!61 &5787658589026953112
+BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -148,31 +174,15 @@ CircleCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1, y: 1}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
   serializedVersion: 2
-  m_Radius: 0.49999997
---- !u!114 &5576292306240511802
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5753089214137506718}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4ae850417582c2940b82c9716660ecb9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  moveSpeed: 0.05
---- !u!114 &4303718935916765189
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5753089214137506718}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 851d30b30a51890418bd2c1305c5997f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  destroy_Frame: 800
+  m_Size: {x: 1, y: 1}
+  m_EdgeRadius: 0

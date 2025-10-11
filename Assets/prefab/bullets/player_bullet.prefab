@@ -100,7 +100,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 0.5
-  destroy_Fram: 180
+  destroy_Fram: 5
 --- !u!50 &-496332095392856966
 Rigidbody2D:
   serializedVersion: 4

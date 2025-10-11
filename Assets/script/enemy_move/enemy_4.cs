@@ -13,11 +13,15 @@ public class enemy_4 : MonoBehaviour
     bool isTrun = false;
     int shot_i = 0 , interval = 120;
 
+    public Sprite[] image;
+    SpriteRenderer sr;
+
     [SerializeField] GameObject fiveWay_bullet;
     private void Start()
     {
         rb = gameObject.GetComponent<Rigidbody2D>();
         myPos = gameObject.transform.position;
+        sr = gameObject.GetComponent<SpriteRenderer>();
     }
     private void Update()
     {
@@ -31,9 +35,16 @@ public class enemy_4 : MonoBehaviour
         if (movePos.x > turnPos && isTrun == false) isTrun = true;
         else if (movePos.x < -turnPos && isTrun) isTrun = false;
 
-        if (isTrun) i--;
-        else i++;
-
+        if (isTrun)
+        {
+            sr.sprite = image[0];
+            i--;
+        }
+        else
+        {
+            sr.sprite = image[1];
+            i++;
+        }
         movePos = myPos + new Vector3(i * x_move_speed, myY, 0);
 
         rb.MovePosition(movePos);

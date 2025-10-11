@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: -5896995721575307556}
   - component: {fileID: 8084382385089146958}
   - component: {fileID: -1419811718693837197}
+  - component: {fileID: 4813456325218223328}
   m_Layer: 0
   m_Name: enemy_7
   m_TagString: enemy
@@ -77,8 +78,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 1, g: 0.2941177, b: 0.92561746, a: 1}
+  m_Sprite: {fileID: 21300000, guid: 455205202b5acf8499226d3b5b0b21dc, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -106,6 +107,7 @@ MonoBehaviour:
   now_score: 0
   hpStoper: 0
   random_switch: 0
+  isDrop: 0
   item_1: {fileID: 3266120769950483571, guid: dc20782b2e949da4d94d3edd6d1fa69a, type: 3}
   item_2: {fileID: 1718769781337574405, guid: 6bd35d4bed76a934c9a7546846ce521f, type: 3}
 --- !u!50 &-5896995721575307556
@@ -171,14 +173,14 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
+    oldSize: {x: 2.56, y: 2.56}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 2, y: 1}
   m_EdgeRadius: 0
 --- !u!114 &-1419811718693837197
 MonoBehaviour:
@@ -197,3 +199,21 @@ MonoBehaviour:
   moveSpeed: -0.1
   moveSpeed_2: 0.01
   i: 0
+--- !u!114 &4813456325218223328
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1179221743106620999}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6be076487848aa7409fb860033b9e8a9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  image:
+  - {fileID: 21300000, guid: 455205202b5acf8499226d3b5b0b21dc, type: 3}
+  - {fileID: 21300000, guid: af88d452ec12da14eb10106040b65857, type: 3}
+  - {fileID: 21300000, guid: 72da4bd16939d1e409b1dead4a8cd143, type: 3}
+  - {fileID: 21300000, guid: af88d452ec12da14eb10106040b65857, type: 3}
+  frame: 5

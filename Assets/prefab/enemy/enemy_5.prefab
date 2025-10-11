@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 7129997670054748361}
   - component: {fileID: 4893491790578890521}
   - component: {fileID: 2594337352712500210}
+  - component: {fileID: -2983266038993709883}
   m_Layer: 0
   m_Name: enemy_5
   m_TagString: enemy
@@ -31,7 +32,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -168,6 +169,7 @@ MonoBehaviour:
   now_score: 0
   hpStoper: 0
   random_switch: 1
+  isDrop: 0
   item_1: {fileID: 1718769781337574405, guid: 2d0b6bc6aea8572479ce5daeb7814c18, type: 3}
   item_2: {fileID: 1718769781337574405, guid: 6bd35d4bed76a934c9a7546846ce521f, type: 3}
 --- !u!114 &2594337352712500210
@@ -187,3 +189,21 @@ MonoBehaviour:
   eim_Bullet: {fileID: 3769863703786932473, guid: 03da78e256a454a4782c74c4efb74909, type: 3}
   interval: 180
   shot_i: 0
+--- !u!114 &-2983266038993709883
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5427302999015849098}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6be076487848aa7409fb860033b9e8a9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  image:
+  - {fileID: 21300000, guid: 4404749f26438894788f282c909acbd1, type: 3}
+  - {fileID: 21300000, guid: 57d977d6ca96015468f8e5648ec5e069, type: 3}
+  - {fileID: 21300000, guid: d9eb2a8d6a3d8044daa13f16af9673db, type: 3}
+  - {fileID: 21300000, guid: 57d977d6ca96015468f8e5648ec5e069, type: 3}
+  frame: 10

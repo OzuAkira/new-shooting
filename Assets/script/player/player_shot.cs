@@ -18,7 +18,7 @@ public class player_shot : MonoBehaviour
 
     [SerializeField] GameObject player_bullet;
 
-    int my_power = 0;
+    public int my_power = 0 , power_level = 12;
     private void Awake()
     {
         _playerInput = GetComponent<PlayerInput>();
@@ -34,7 +34,7 @@ public class player_shot : MonoBehaviour
         score = canvas.transform.Find("score").gameObject;
         power = canvas.transform.Find("power").gameObject;
     }
-    int power_level = 12;
+    
     private void Update()
     {
         //ŠÔŠu‚Åƒtƒ‰ƒO‚ğŠÇ—

@@ -17,8 +17,9 @@ public class back_ground : MonoBehaviour
         if (Rect.anchoredPosition.y == 0)
         {
             RectTransform r = Instantiate(image, _canvas.transform).GetComponent<RectTransform>();
-            r.anchoredPosition = new Vector2(0,890);
+            r.anchoredPosition = new Vector2(0, 890);
         }
-        Rect.anchoredPosition += Vector2.down*10;
+        else if (Rect.anchoredPosition.y < -700) Destroy(gameObject);
+            Rect.anchoredPosition += Vector2.down * 10;
     }
 }

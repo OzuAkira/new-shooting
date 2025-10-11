@@ -72,7 +72,7 @@ public class big_eim : MonoBehaviour
                 yield return null;
             }
         }
-        Debug.Log("!!!");
+
         foreach (var child in childEims)
         {
             child.finish = true;

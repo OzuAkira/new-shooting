@@ -16,11 +16,15 @@ public class stageBoss_1 : MonoBehaviour
     [SerializeField] GameObject[] phase_1_bullet;
 
 
-    GameObject playerObj , bom;
+    GameObject playerObj , bom , canvas , score;
+
+    Text _text;
+    public int hit_point = 1, kill_point = 10, now_score;
+
     Rigidbody2D rb;
     BoxCollider2D bc;
     Slider slider;
-    public float HP = 300;
+    public float HP = 200;
 
     bool isSpell = false , isPhase_1 = false , isPhase_2 = false;
 
@@ -39,7 +43,11 @@ public class stageBoss_1 : MonoBehaviour
 
         bom = Instantiate(bom_obj);
 
-        
+        //score関係
+        canvas = GameObject.Find("Canvas_2");
+        score = canvas.transform.Find("score").gameObject;
+
+
 
         StartCoroutine(buttleStart());//登場＆無敵解除
     }
@@ -78,13 +86,20 @@ public class stageBoss_1 : MonoBehaviour
         {
             
             Destroy(collision.gameObject);
+            //score の増か
+            _text = score.GetComponent<Text>();
+            now_score = int.Parse(_text.text);
+
+            now_score += hit_point;
+            _text.text = now_score.ToString();
+
             if (isSpell) HP -= spell_damage;
             else HP--;
 
 
 
-            if (isPhase_1) slider.value = HP - slider.maxValue * 2;
-            else if (isPhase_2) slider.value = HP - slider.maxValue;
+            if (isPhase_1) slider.value = HP - slider.maxValue;
+            else if (isPhase_2) slider.value = HP;
             if (slider.value <= 0 && isPhase_1)
             {
                 bom.SetActive(true);//全敵弾を消す
@@ -92,23 +107,40 @@ public class stageBoss_1 : MonoBehaviour
                 StopAllCoroutines();//コルーチンを全て停止
 
                 isPhase_1 = false;//連続呼びを防止
+                
+                slider.value = slider.maxValue;
+
                 stopd = false;
-                Debug.Log("hp_image");
+                isSpell = false;
+
                 Image HP_0_image = nextHP[0].GetComponent<Image>();
                 UnityEngine.Color c = HP_0_image.color;
-                c = new Color(0.1509f,0.1309f,0.1217f);//色を指定
+                c = new Color(0.1509f, 0.1309f, 0.1217f);//色を指定
                 HP_0_image.color = c;//控えのHPバーを1つ黒にする
 
-                slider.value = slider.maxValue;//slider をMaxに戻す
                 bc.enabled = false;//当たり判定を消した
 
                 StartCoroutine(phase_2());
             }
             //ここにボスが撃破された時の処理を書く
+            else if(slider.value <= 0 && isPhase_2)
+            {
+                bom.SetActive(true);//全敵弾を消す
+
+                StopAllCoroutines();//コルーチンを全て停止
+
+                isPhase_2 = false;//連続呼びを防止
+                stopd = false;
+
+                Debug.Log("撃破");
+
+                Destroy(_hp);
+                Destroy(gameObject);
+            }
         }
     }
 
-    
+    GameObject _hp;
     IEnumerator buttleStart()
     {
         //下に降りてくるやつ
@@ -122,7 +154,7 @@ public class stageBoss_1 : MonoBehaviour
 
         yield return new WaitForSeconds(2);
 
-        GameObject _hp = Instantiate(HP_slider);//HPバーを表示
+        _hp = Instantiate(HP_slider);//HPバーを表示
 
         int nextHP_count = 2;
         for (int i = 1; i <= nextHP_count; i++)//次のHPバーのオブジェクトを取得
@@ -435,7 +467,7 @@ public class stageBoss_1 : MonoBehaviour
             else
             {
                 shotCount = 0;
-                yield return new WaitForSeconds(1);
+                yield return new WaitForSeconds(0.5f);
             }
         }
         

@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: -2103351501210068415}
   - component: {fileID: -7938658557297594106}
   - component: {fileID: -7795313917346124286}
+  - component: {fileID: -6011961915108180334}
   m_Layer: 0
   m_Name: enemy_3
   m_TagString: enemy
@@ -77,8 +78,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
-  m_Color: {r: 0.31492695, g: 0.57861626, b: 0.11463145, a: 1}
+  m_Sprite: {fileID: 21300000, guid: 05608ea803c1d484b869ca4f3faf70f6, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -149,7 +150,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 1
 --- !u!114 &-7938658557297594106
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -168,6 +169,7 @@ MonoBehaviour:
   now_score: 0
   hpStoper: 0
   random_switch: 0
+  isDrop: 0
   item_1: {fileID: 1718769781337574405, guid: 06aac7bb517be1c48ad48d678c066459, type: 3}
   item_2: {fileID: 1718769781337574405, guid: 6bd35d4bed76a934c9a7546846ce521f, type: 3}
 --- !u!114 &-7795313917346124286
@@ -186,3 +188,21 @@ MonoBehaviour:
   stopPos: 3.5
   interval_flag: 0
   straight_bulled: {fileID: 3975430520059093986, guid: 8645a62edbdc05b4ca2993cf7768d3bd, type: 3}
+--- !u!114 &-6011961915108180334
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 728689543331644673}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6be076487848aa7409fb860033b9e8a9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  image:
+  - {fileID: 21300000, guid: 05608ea803c1d484b869ca4f3faf70f6, type: 3}
+  - {fileID: 21300000, guid: 31870f439cab7ca4cbe6ef49d57381ac, type: 3}
+  - {fileID: 21300000, guid: 595c2b1046376c44198f0416fd7ce6ba, type: 3}
+  - {fileID: 21300000, guid: 31870f439cab7ca4cbe6ef49d57381ac, type: 3}
+  frame: 5

@@ -7,7 +7,7 @@ public class enemy_1_2_5_6 : MonoBehaviour
 {
     [SerializeField] Vector3 velocity = new Vector3(0.02f , 0.001f,0),myPos;
     Rigidbody2D rb;
-    int move_i = 0, destroy_frame = 500;
+    int move_i = 0, destroy_frame = 250;
 
     [SerializeField] GameObject eim_Bullet;
     public int interval = 90, shot_i =0;
@@ -35,7 +35,7 @@ public class enemy_1_2_5_6 : MonoBehaviour
     void shot()
     {
 
-        if (shot_i % interval == 0)
+        if (shot_i % interval == 0 && transform.position.x > -4.5 && transform.position.x < 4.5)
         {
             shot_i = 0;
             Thread.Sleep(Random.Range(0,10));

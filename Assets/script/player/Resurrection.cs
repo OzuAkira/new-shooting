@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class Resurrection : MonoBehaviour
 {
-    public GameObject playerObj;
+    public GameObject playerObj,stage_M,ending;
 
     [SerializeField] Text player;
     [SerializeField] Text bom;
@@ -45,7 +45,12 @@ public class Resurrection : MonoBehaviour
         yield return new WaitForSeconds(3.5f);
         if (_player < 0)
         {
-            Debug.Log("gemeover");//後で書く
+            Debug.Log("gemeover");
+            stage_M.SetActive(false);
+            gameObject.GetComponent<BoxCollider2D>().enabled = true;//敵弾と敵のObjectを削除
+
+            StartCoroutine(end());
+
         }
         else
         {
@@ -73,5 +78,28 @@ public class Resurrection : MonoBehaviour
         for (int i = 0; i < _n; i++)TextList.Add("♦");
 
         textObj.text = string.Join("", TextList);
+    }
+    IEnumerator end()
+    {
+        yield return new WaitForSeconds(1);
+        GameObject child_ending = Instantiate(ending, new Vector3(0, 0, 0), Quaternion.identity);
+        Image _image = child_ending.transform.GetChild(0).GetComponent<Image>();
+        push_score ps = child_ending.transform.GetChild(1).GetComponent<push_score>();
+
+        float add=0.02f;
+        UnityEngine.Color c = _image.color;//alphaを調整
+        c.a = 0;
+        _image.color = c;
+        while (_image.color.a < 1)
+        {
+            c.a += add;
+            _image.color = c;
+            yield return null;
+        }
+        StartCoroutine(ps.first_move());//”GameOrver”の文字を出す演出
+    }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("enemy_bullet") || collision.CompareTag("enemy")) Destroy(collision.gameObject);
     }
 }

@@ -18,23 +18,17 @@ public class player_shot : MonoBehaviour
 
     [SerializeField] GameObject player_bullet;
 
-    int my_power = 0;
+    public int my_power = 0 , power_level = 12;
     private void Awake()
     {
         _playerInput = GetComponent<PlayerInput>();
         // çUåÇÉAÉNÉVÉáÉìÇPlayerInputÇ©ÇÁéÊìæ
         _shotAction = _playerInput.actions[_slowActionName];
     }
-    GameObject score ,power, canvas;
-    Text score_text , powre_text;
-    public int now_score;
-    private void Start()
-    {
-        canvas = GameObject.Find("Canvas_2");
-        score = canvas.transform.Find("score").gameObject;
-        power = canvas.transform.Find("power").gameObject;
-    }
-    int power_level = 12;
+
+
+    
+    
     private void Update()
     {
         //ä‘äuÇ≈ÉtÉâÉOÇä«óù
@@ -72,7 +66,7 @@ public class player_shot : MonoBehaviour
                 else Instantiate(player_bullet, gameObject.transform.position + new Vector3(0, instant_Ypos), Quaternion.identity);//íeÇê∂ê¨
 
                 isShot = true;
-                Debug.Log(my_power);
+
 
             }
         }
@@ -82,35 +76,6 @@ public class player_shot : MonoBehaviour
             return;
         }
     }
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.gameObject.CompareTag("item"))
-        {
-            item catch_item = collision.gameObject.GetComponent<item>();
-            if (catch_item.isPoint)
-            {
-                score_text = score.GetComponent<Text>();
-                now_score = int.Parse(score_text.text);
-
-                now_score += catch_item.have_point;
-                score_text.text = now_score.ToString();
-            }
-            else
-            {
-                powre_text = power.GetComponent<Text>();
-                my_power += catch_item.have_power;
-
-                powre_text.text = "Power : " + my_power.ToString();
-
-                //scoreÇ‡è„Ç∞ÇÈ
-                score_text = score.GetComponent<Text>();
-                now_score = int.Parse(score_text.text);
-
-                now_score += catch_item.have_point;
-                score_text.text = now_score.ToString();
-            }
-            Destroy(collision.gameObject);
-        }
-    }
+    
 
 }

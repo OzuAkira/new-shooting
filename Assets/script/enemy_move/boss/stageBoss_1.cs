@@ -40,8 +40,13 @@ public class stageBoss_1 : MonoBehaviour
         rnd = new System.Random();      // Randomオブジェクトを作成
 
         playerObj = GameObject.Find("player");
+        player_shot player_shot = playerObj.GetComponent<player_shot>();
+
+        if (player_shot.my_power > player_shot.power_level * 2) HP *= 3;
+        else if (player_shot.my_power > player_shot.power_level ) HP *= 2;
 
         bom = Instantiate(bom_obj);
+        bom.SetActive(false);
 
         //score関係
         canvas = GameObject.Find("Canvas_2");
@@ -94,7 +99,7 @@ public class stageBoss_1 : MonoBehaviour
             _text.text = now_score.ToString();
 
             if (isSpell) HP -= spell_damage;
-            else HP--;
+            else HP--;//ここは変えない
 
 
 
@@ -165,7 +170,8 @@ public class stageBoss_1 : MonoBehaviour
         //nextHP[0].SetActive(false);
 
         slider = _hp.transform.Find("Slider").GetComponent<Slider>();//sliderを取得
-        slider.value = HP;//HPを初期化
+        slider.maxValue = HP/2;
+        slider.value = slider.maxValue;//HPを初期化
 
         bc.enabled = true;//当たり判定をture
 

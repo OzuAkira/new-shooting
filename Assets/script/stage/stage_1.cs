@@ -16,7 +16,7 @@ public class stage_1 : MonoBehaviour
 
     int next_count = 8;
     [SerializeField]float wait_s = 1f;
-
+    [SerializeField] GameObject bomBody;
     List<GameObject> keyEnemies = new List<GameObject>();//倒さないと先に進めない
 
     void Start()
@@ -62,6 +62,9 @@ public class stage_1 : MonoBehaviour
 
     IEnumerator phase_1()
     {
+        //右端に弾消しObｊを配置
+        GameObject bom = Instantiate(bomBody, new Vector3(8, 0), Quaternion.identity);
+
         //左端からCount匹の敵が出現
         for (int i = 0; i < count; i++)
         {
@@ -71,10 +74,11 @@ public class stage_1 : MonoBehaviour
             if (i == next_count) StartCoroutine(phase_2());//  非同期で実行
 
         }
+        Destroy(bom);
     }
     IEnumerator phase_2()
     {
-
+        GameObject bom = Instantiate(bomBody, new Vector3(-8, 0), Quaternion.identity);
         //右端からCount匹の敵が出現
         for (int i = 0; i < count; i++)
         {
@@ -94,6 +98,7 @@ public class stage_1 : MonoBehaviour
                 keyEnemies.Add (wallShot_enemy_2);//こいつは倒さないとボスが出現しない
             }
         }
+        Destroy(bom);
         yield return new WaitForSeconds(1);
         StartCoroutine(phase_3());
 
@@ -104,11 +109,13 @@ public class stage_1 : MonoBehaviour
 
         yield return new WaitForSeconds(2);
 
+        GameObject bom = Instantiate(bomBody, new Vector3(-8, 0), Quaternion.identity);
         while (middle_enemy1 != null)
         {
             Instantiate(enemy_5, new Vector2(enemy1_2_pos.x * -1, enemy1_2_pos.y), Quaternion.identity);//右端からCount匹の敵が出現
             yield return new WaitForSeconds(4);
         }
+        Destroy (bom);
 
         GameObject middle_enemy2 = Instantiate(enemy_4, new Vector2( -enemy4_pos.x , enemy4_pos.y), Quaternion.identity);//テンション高いやつ2号。反対側から出現
 
@@ -119,12 +126,14 @@ public class stage_1 : MonoBehaviour
 
         yield return new WaitForSeconds(wait_s);
 
+        bom = Instantiate(bomBody, new Vector3(8, 0), Quaternion.identity);
         while (middle_enemy2 != null)
         {
             death.hpStoper = true;
-            Instantiate(enemy_6, enemy1_2_pos, Quaternion.identity);//右端からCount匹の敵が出現
+            Instantiate(enemy_6, enemy1_2_pos, Quaternion.identity);//左端からCount匹の敵が出現
             yield return new WaitForSeconds(4);
         }
+        Destroy(bom);
 
         death.hpStoper = false;
         yield return new WaitForSeconds(wait_s);

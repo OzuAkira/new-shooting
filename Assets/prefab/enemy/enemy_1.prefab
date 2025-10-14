@@ -167,7 +167,7 @@ MonoBehaviour:
   hit_point: 1
   kill_point: 10
   now_score: 0
-  hpStoper: 0
+  hpStoper: 1
   random_switch: 1
   isDrop: 0
   item_1: {fileID: 1718769781337574405, guid: 2d0b6bc6aea8572479ce5daeb7814c18, type: 3}

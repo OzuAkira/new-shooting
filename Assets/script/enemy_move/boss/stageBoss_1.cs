@@ -133,6 +133,8 @@ public class stageBoss_1 : MonoBehaviour
             else if(slider.value <= 0 && isPhase_2)
             {
                 bom.SetActive(true);//‘S“G’e‚ğÁ‚·
+                player_bom pb = playerObj.GetComponent<player_bom>();
+                pb.Invincible = true;
 
                 StopAllCoroutines();//ƒRƒ‹[ƒ`ƒ“‚ğ‘S‚Ä’â~
 
@@ -144,7 +146,7 @@ public class stageBoss_1 : MonoBehaviour
                 Destroy(_hp);
                 gameObject.GetComponent<BoxCollider2D>().enabled = false;
                 gameObject.GetComponent<SpriteRenderer>().enabled = false;
-                Debug.Log("Œ‚”j");
+                
             }
         }
     }

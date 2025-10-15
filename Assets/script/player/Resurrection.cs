@@ -31,11 +31,10 @@ public class Resurrection : MonoBehaviour
     {
         _do = true;//連続で呼ばれるのを阻止
         _player--;
-        _bom = 2;
-
+        
         
         textChange("Player : ",_player,player);
-        textChange(" Bom   : ",_bom, bom);
+        
 
         var Pmove = playerObj.GetComponent<player_move>();
         Pmove.axis = Vector2.zero;//復活時に移動方向をニュートラル直す
@@ -49,11 +48,14 @@ public class Resurrection : MonoBehaviour
             stage_M.SetActive(false);
             gameObject.GetComponent<BoxCollider2D>().enabled = true;//敵弾と敵のObjectを削除
 
-            StartCoroutine(end());
+            StartCoroutine(end(false));
 
         }
         else
         {
+            _bom = 2;
+
+            textChange(" Bom   : ", _bom, bom);
             playerObj.SetActive(true);
 
             isResurrection = true;
@@ -79,7 +81,7 @@ public class Resurrection : MonoBehaviour
 
         textObj.text = string.Join("", TextList);
     }
-    IEnumerator end()
+    public IEnumerator end(bool clear)
     {
         yield return new WaitForSeconds(1);
         GameObject child_ending = Instantiate(ending, new Vector3(0, 0, 0), Quaternion.identity);
@@ -96,7 +98,10 @@ public class Resurrection : MonoBehaviour
             _image.color = c;
             yield return null;
         }
-        StartCoroutine(ps.first_move());//”GameOrver”の文字を出す演出
+        
+        yield return new WaitForSeconds(1);
+        if (clear) StartCoroutine(ps.first_move(true));
+        else StartCoroutine(ps.first_move(false));//”GameOrver”の文字を出す演出
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {

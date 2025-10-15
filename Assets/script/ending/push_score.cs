@@ -1,32 +1,74 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
+using static UnityEditor.Experimental.GraphView.GraphView;
 
 public class push_score : MonoBehaviour
 {
-    public GameObject textObj , anykye_Obj;
+    public GameObject anykye_Obj;
+    private GameObject resureection_Obj , playerObj;
+    public GameObject[] textObj;
     public Vector2 goalPos , movePos;
-    public bool isClear = false;
-    
-    public IEnumerator first_move()
+
+    private void Start()
     {
-    yield return new WaitForSeconds(3);
-        RectTransform rt=textObj.GetComponent<RectTransform>();
-        while(rt.anchoredPosition != goalPos)
+        resureection_Obj = GameObject.Find("GameMaster");
+        playerObj = GameObject.Find("player");
+    }
+    public IEnumerator first_move(bool isClear)
+    {
+        RectTransform rt;
+        int i = 0;
+        while (i < 120)
+        {
+            i++;
+            if (Input.anyKey) break;
+        }
+        rt = textObj[0].GetComponent<RectTransform>();
+        Text score = GameObject.Find("Canvas_2").transform.GetChild(4).GetComponent<Text>() , my_textObj = textObj[0].GetComponent<Text>();
+        my_textObj.text = score.text;
+        while (rt.anchoredPosition != goalPos)
         {
             rt.anchoredPosition += movePos;
-            if(rt.anchoredPosition.y > goalPos.y) rt.anchoredPosition = goalPos;
+            if (rt.anchoredPosition.y > goalPos.y) rt.anchoredPosition = goalPos;
             yield return null;
         }
+        if (isClear)
+        {
+            rt = textObj[1].GetComponent<RectTransform>();
+            goalPos = new Vector2(0,0);
+            Resurrection res = resureection_Obj.GetComponent<Resurrection>();
+            player_shot player_Shot = playerObj.GetComponent<player_shot>();
+            int p= res._player, b=res._bom , pp = player_Shot.my_power;//player‚Æbom‚ðŽæ“¾
+
+            yield return new WaitForSeconds(1.5f);
+
+            while (rt.anchoredPosition != goalPos)
+            {
+                rt.anchoredPosition += movePos;
+                if (rt.anchoredPosition.y > goalPos.y) rt.anchoredPosition = goalPos;
+                yield return null;
+            }
+
+            yield return new WaitForSeconds(1.5f);
+
+            my_textObj.text = ((int.Parse(my_textObj.text) + pp * b) * p).ToString();
+        }
+
         bool isPush = false;
-        int i = 0;
+        i = 0;
+
+        yield return new WaitForSeconds(1.5f);
+
         while (true)
         {
             
             if (Input.anyKey) isPush = true;
             if (isPush)
             {
-                
+                SceneManager.LoadScene("TitleScene");
             }
             else
             {
@@ -40,7 +82,7 @@ public class push_score : MonoBehaviour
             }
             yield return null;
             
-    }
+        }
 
 }
 }

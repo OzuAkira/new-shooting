@@ -1,11 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SocialPlatforms.Impl;
 using UnityEngine.UI;
 
 public class player_bom : MonoBehaviour
 {
     public GameObject bom , GM;
+    SpriteRenderer sr;
     Resurrection res;
     [SerializeField] Text bomText;
     bool _do = false;
@@ -14,7 +16,7 @@ public class player_bom : MonoBehaviour
     private void Start()
     {
         res = GM.GetComponent<Resurrection>();
-        
+        sr = gameObject.GetComponent<SpriteRenderer>();
     }
     void OnBom()
     {
@@ -39,5 +41,10 @@ public class player_bom : MonoBehaviour
 
         _do = false;
     }
-    
+    private void Update()
+    {
+        if(Invincible) sr.color = Color.red;
+        else sr.color = Color.white;
+    }
+
 }

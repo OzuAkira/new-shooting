@@ -16,7 +16,7 @@ public class stageBoss_1 : MonoBehaviour
     [SerializeField] GameObject[] phase_1_bullet;
 
 
-    GameObject playerObj , bom , canvas , score;
+    GameObject playerObj , bom , canvas , score , resObj;
 
     Text _text;
     public int hit_point = 1, kill_point = 10, now_score;
@@ -40,7 +40,9 @@ public class stageBoss_1 : MonoBehaviour
         rnd = new System.Random();      // Randomオブジェクトを作成
 
         playerObj = GameObject.Find("player");
+        
         player_shot player_shot = playerObj.GetComponent<player_shot>();
+
 
         if (player_shot.my_power > player_shot.power_level * 2) HP *= 3;
         else if (player_shot.my_power > player_shot.power_level ) HP *= 2;
@@ -131,16 +133,20 @@ public class stageBoss_1 : MonoBehaviour
             else if(slider.value <= 0 && isPhase_2)
             {
                 bom.SetActive(true);//全敵弾を消す
+                player_bom pb = playerObj.GetComponent<player_bom>();
+                pb.Invincible = true;
 
                 StopAllCoroutines();//コルーチンを全て停止
 
                 isPhase_2 = false;//連続呼びを防止
-                stopd = false;
-
-                Debug.Log("撃破");
+                //stopd = false;
+                resObj = GameObject.Find("GameMaster");
+                StartCoroutine(resObj.GetComponent<Resurrection>().end(true));
 
                 Destroy(_hp);
-                Destroy(gameObject);
+                gameObject.GetComponent<BoxCollider2D>().enabled = false;
+                gameObject.GetComponent<SpriteRenderer>().enabled = false;
+                
             }
         }
     }

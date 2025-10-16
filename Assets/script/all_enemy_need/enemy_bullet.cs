@@ -31,12 +31,8 @@ public class enemy_bullet : MonoBehaviour
             player_bom player_Bom = collision.GetComponent<player_bom>();
 
             if (player_Bom.Invincible) return;//ƒ{ƒ€Žg—pŽž‚È‚ç‰½‚à‹N‚«‚È‚¢
+            else player.SetActive(false);//–³“GŽžŠÔ‚Å‚È‚¯‚ê‚Î”í’e‚·‚é
 
-            if (resu.isResurrection == false)//–³“GŽžŠÔ‚Å‚È‚¯‚ê‚Î”í’e‚·‚é
-            {
-                player.SetActive(false);
-                Debug.Log("miss!!");
-            }
         }
         else if (collision.CompareTag("wall"))
         {

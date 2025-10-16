@@ -867,7 +867,7 @@ Canvas:
   m_AdditionalShaderChannelsFlag: 0
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 11
   m_TargetDisplay: 0
 --- !u!224 &714096461
 RectTransform:
@@ -1931,7 +1931,7 @@ MonoBehaviour:
   bom: {fileID: 490281136}
   GM: {fileID: 149419051}
   bomText: {fileID: 1163804208}
-  Invincible: 0
+  Invincible: 1
 --- !u!1 &1770873201
 GameObject:
   m_ObjectHideFlags: 0
@@ -2177,7 +2177,7 @@ Canvas:
   m_AdditionalShaderChannelsFlag: 0
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 2
+  m_SortingOrder: 12
   m_TargetDisplay: 0
 --- !u!224 &2013792781
 RectTransform:

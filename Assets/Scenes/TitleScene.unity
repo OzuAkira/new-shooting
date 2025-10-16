@@ -956,8 +956,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd5fd6992dbbf284195d7540d6f5bb16, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  OnImage: {fileID: 0}
-  OffImage: {fileID: 0}
+  OnImage: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
+  OffImage: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
 --- !u!1 &1534143227
 GameObject:
   m_ObjectHideFlags: 0
@@ -1165,7 +1165,7 @@ Canvas:
   m_AdditionalShaderChannelsFlag: 0
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 2
+  m_SortingOrder: 12
   m_TargetDisplay: 0
 --- !u!1 &1566962720
 GameObject:
@@ -1339,7 +1339,7 @@ Canvas:
   m_AdditionalShaderChannelsFlag: 0
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 11
   m_TargetDisplay: 0
 --- !u!224 &1827857001
 RectTransform:

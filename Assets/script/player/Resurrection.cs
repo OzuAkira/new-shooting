@@ -30,9 +30,10 @@ public class Resurrection : MonoBehaviour
         
         
         textChange("Player : ",_player,player);
-        
 
-        var Pmove = playerObj.GetComponent<player_move>();
+
+        player_move Pmove = playerObj.GetComponent<player_move>(); 
+        player_bom isMuteki = playerObj.GetComponent<player_bom>();
         Pmove.axis = Vector2.zero;//復活時に移動方向をニュートラル直す
 
         playerObj.transform.position = new Vector3(0,-4,0);
@@ -54,11 +55,11 @@ public class Resurrection : MonoBehaviour
             textChange(" Bom   : ", _bom, bom);
             playerObj.SetActive(true);
 
-            isResurrection = true;
+            isMuteki.Invincible = true;
 
             yield return new WaitForSeconds(3.5f);//無敵時間
 
-            isResurrection = false;
+            isMuteki.Invincible = false;
 
             _do = false;
         }

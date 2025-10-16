@@ -14,9 +14,8 @@ GameObject:
   - component: {fileID: 1588056725306983284}
   - component: {fileID: 181568575795329731}
   - component: {fileID: -1817503428504681627}
-  - component: {fileID: -5451745937422995709}
   m_Layer: 0
-  m_Name: Straight_speed
+  m_Name: Straight_bulled_2
   m_TagString: enemy_bullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -83,7 +82,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 1.28, y: 1.28}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -150,7 +149,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.49999997
+  m_Radius: 1
 --- !u!114 &181568575795329731
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -163,7 +162,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 851d30b30a51890418bd2c1305c5997f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  destroy_Frame: 300
+  destroy_Frame: 150
 --- !u!114 &-1817503428504681627
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -176,17 +175,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ae850417582c2940b82c9716660ecb9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 0.15
---- !u!114 &-5451745937422995709
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3975430520059093986}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 851d30b30a51890418bd2c1305c5997f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  destroy_Frame: 600
+  moveSpeed: 0.05

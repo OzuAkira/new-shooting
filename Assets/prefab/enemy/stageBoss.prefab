@@ -103,8 +103,11 @@ MonoBehaviour:
   moveSpeed: 0.03
   HP_slider: {fileID: 2096499495895237190, guid: d2b51914f4642a2419d491f3ac3b9d65, type: 3}
   phase_1_bullet:
-  - {fileID: 3975430520059093986, guid: 8645a62edbdc05b4ca2993cf7768d3bd, type: 3}
+  - {fileID: 3975430520059093986, guid: ad706e1511899884185f8e3f386d1efd, type: 3}
   - {fileID: 3769863703786932473, guid: 03da78e256a454a4782c74c4efb74909, type: 3}
+  hit_point: 1
+  kill_point: 10
+  now_score: 0
   HP: 200
   nextHP: []
   Raw_eimPos:

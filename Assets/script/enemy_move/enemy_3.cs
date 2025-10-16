@@ -33,7 +33,9 @@ public class enemy_3 : MonoBehaviour
             
             for (int i=0;i<loop_n;i++) 
             {
-                if(interval_flag) Instantiate(straight_bulled, gameObject.transform.position, Quaternion.Euler(0, 0, -90 + i * 18));
+                if (interval_flag)
+                    Instantiate(straight_bulled, gameObject.transform.position, Quaternion.Euler(0, 0, -90 + i * 18));
+
                 else Instantiate(straight_bulled, gameObject.transform.position, Quaternion.Euler(0, 0, 90 - i * 18));
             }
             if (count > 5) 

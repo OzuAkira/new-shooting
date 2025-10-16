@@ -188,3 +188,4 @@ MonoBehaviour:
   loop_i: 2
   straght_bullet: {fileID: 2270920004327338634, guid: 307b57209a314ab439ae2db30b47929b, type: 3}
   moveSpeed: 0.1
+  max_angle: 15

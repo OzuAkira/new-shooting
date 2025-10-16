@@ -187,7 +187,7 @@ MonoBehaviour:
   addPos: -0.01
   stopPos: 3.5
   interval_flag: 0
-  straight_bulled: {fileID: 3975430520059093986, guid: 8645a62edbdc05b4ca2993cf7768d3bd, type: 3}
+  straight_bulled: {fileID: 1445873076346653009, guid: 146bbd635e45a4347b655a1da8ba7395, type: 3}
 --- !u!114 &-6011961915108180334
 MonoBehaviour:
   m_ObjectHideFlags: 0

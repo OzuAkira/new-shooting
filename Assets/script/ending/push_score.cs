@@ -54,7 +54,7 @@ public class push_score : MonoBehaviour
 
             yield return new WaitForSeconds(1.5f);
 
-            my_textObj.text = ((int.Parse(my_textObj.text) + pp * b) * p).ToString();
+            my_textObj.text = ((int.Parse(my_textObj.text) + pp * (b+1)) * (p+1)).ToString();
         }
 
         bool isPush = false;

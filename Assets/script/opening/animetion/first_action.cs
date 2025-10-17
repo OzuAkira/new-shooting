@@ -50,7 +50,7 @@ public class first_action : MonoBehaviour
 
             menuRT.anchoredPosition -= new Vector2(menuMoveSpeed , 0);//X軸のみ移動。割り切れるので、下のIF文で矯正する必要が無い
 
-            if (myRT.anchoredPosition.x < golePos.x)
+            if (myRT.anchoredPosition.y > golePos.y)
             {
                 myRT.anchoredPosition = golePos;
                 loop = true;

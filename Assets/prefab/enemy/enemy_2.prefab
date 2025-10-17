@@ -186,7 +186,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   velocity: {x: -0.06, y: 0.01, z: 0}
   myPos: {x: 0, y: 0, z: 0}
-  eim_Bullet: {fileID: 3769863703786932473, guid: 03da78e256a454a4782c74c4efb74909, type: 3}
+  eim_Bullet: {fileID: 3769863703786932473, guid: 08a89f5b6398aeb4d8fe32379b1f37d8, type: 3}
   interval: 90
   shot_i: 0
 --- !u!114 &8581270463975701659

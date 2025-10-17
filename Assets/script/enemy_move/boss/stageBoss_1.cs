@@ -414,8 +414,33 @@ public class stageBoss_1 : MonoBehaviour
                     int ran_int = random.Next(-25, 25);
                     int ran_speed = random.Next(3, 10);
 
-                    Instantiate(phase2_bullets[1], transform.position, Quaternion.Euler(0, 0, (i / frame) + ran_int))
-                        .GetComponent<Straight_move>().moveSpeed = ran_speed * 0.01f;
+                    GameObject g_bullet = Instantiate(phase2_bullets[1], transform.position, Quaternion.Euler(0, 0, (i / frame) + ran_int));
+                    g_bullet.GetComponent<Straight_move>().moveSpeed = ran_speed * 0.01f;
+                    SpriteRenderer sr = g_bullet.GetComponent<SpriteRenderer>();
+                    switch (UnityEngine.Random.Range(0, 7))
+                    {
+                        case 0:
+                            sr.color = Color.white
+                                ; break;
+                        case 1:
+                            sr.color = Color.red
+                                ; break;
+                        case 2:
+                            //sr.color = Color.blue
+                                ; break;
+                        case 3:
+                            sr.color = Color.green
+                                ; break;
+                        case 4:
+                            sr.color = Color.cyan
+                                ; break;
+                        case 5:
+                            sr.color = Color.magenta
+                                ; break;
+                        case 6:
+                            sr.color = Color.yellow
+                                ; break;
+                    }//êFÇïœÇ¶ÇÈ
                 }
             }
             yield return null;
@@ -450,7 +475,31 @@ public class stageBoss_1 : MonoBehaviour
 
         for(int ii = 0; ii < gravity_int; ii++)
         {
-           Instantiate(phase2_bullets[3] , transform.position ,Quaternion.identity);
+           SpriteRenderer sr = Instantiate(phase2_bullets[3] , transform.position ,Quaternion.identity).GetComponent<SpriteRenderer>();
+            switch(UnityEngine.Random.Range(0, 7))
+            {
+                case 0:
+                    sr.color = Color.white
+                        ;break;
+                case 1:
+                    sr.color = Color.red
+                        ; break;
+                case 2:
+                    //sr.color = Color.blue
+                        ; break;
+                case 3:
+                    sr.color = Color.green
+                        ; break;
+                case 4:
+                    sr.color = Color.cyan
+                        ; break;
+                case 5:
+                    sr.color = Color.magenta
+                        ; break;
+                case 6:
+                    sr.color = Color.yellow
+                        ; break;
+            }//êFÇïœÇ¶ÇÈ
 
             yield return null; yield return null;//2frameë“Ç¬
         }

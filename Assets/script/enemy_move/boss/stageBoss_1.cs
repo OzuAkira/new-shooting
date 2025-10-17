@@ -11,12 +11,12 @@ public class stageBoss_1 : MonoBehaviour
 //ÇΩÇæÇµÅAUIÇÕèúÇ≠
 {
     [SerializeField] float start_y_Pos = 3 , moveSpeed;
-    [SerializeField] GameObject HP_slider;
+    [SerializeField] GameObject HP_slider , spell_bg;
 
     [SerializeField] GameObject[] phase_1_bullet;
 
 
-    GameObject playerObj , bom , canvas , score , resObj;
+    GameObject playerObj , bom , canvas , score , resObj ,bg;
 
     Text _text;
     public int hit_point = 1, kill_point = 10, now_score;
@@ -110,7 +110,7 @@ public class stageBoss_1 : MonoBehaviour
             if (slider.value <= 0 && isPhase_1)
             {
                 bom.SetActive(true);//ëSìGíeÇè¡Ç∑
-
+                Destroy(bg);
                 StopAllCoroutines();//ÉRÉãÅ[É`ÉìÇëSÇƒí‚é~
 
                 isPhase_1 = false;//òAë±åƒÇ—Çñhé~
@@ -133,6 +133,7 @@ public class stageBoss_1 : MonoBehaviour
             else if(slider.value <= 0 && isPhase_2)
             {
                 bom.SetActive(true);//ëSìGíeÇè¡Ç∑
+                Destroy (bg);
                 player_bom pb = playerObj.GetComponent<player_bom>();
                 pb.Invincible = true;
 
@@ -322,6 +323,7 @@ public class stageBoss_1 : MonoBehaviour
         bc.enabled = false;//ìñÇΩÇËîªíËÇè¡Ç∑
         isSpell = true;
 
+        bg = Instantiate(spell_bg, new Vector3(0, 0, 0), Quaternion.identity);
         
         yield return null;
         bom.SetActive(true);

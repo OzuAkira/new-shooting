@@ -11,12 +11,12 @@ public class stageBoss_1 : MonoBehaviour
 //ÇΩÇæÇµÅAUIÇÕèúÇ≠
 {
     [SerializeField] float start_y_Pos = 3 , moveSpeed;
-    [SerializeField] GameObject HP_slider;
+    [SerializeField] GameObject HP_slider , spell_bg;
 
     [SerializeField] GameObject[] phase_1_bullet;
 
 
-    GameObject playerObj , bom , canvas , score , resObj;
+    GameObject playerObj , bom , canvas , score , resObj ,bg;
 
     Text _text;
     public int hit_point = 1, kill_point = 10, now_score;
@@ -110,7 +110,7 @@ public class stageBoss_1 : MonoBehaviour
             if (slider.value <= 0 && isPhase_1)
             {
                 bom.SetActive(true);//ëSìGíeÇè¡Ç∑
-
+                Destroy(bg);
                 StopAllCoroutines();//ÉRÉãÅ[É`ÉìÇëSÇƒí‚é~
 
                 isPhase_1 = false;//òAë±åƒÇ—Çñhé~
@@ -133,6 +133,7 @@ public class stageBoss_1 : MonoBehaviour
             else if(slider.value <= 0 && isPhase_2)
             {
                 bom.SetActive(true);//ëSìGíeÇè¡Ç∑
+                Destroy (bg);
                 player_bom pb = playerObj.GetComponent<player_bom>();
                 pb.Invincible = true;
 
@@ -322,6 +323,7 @@ public class stageBoss_1 : MonoBehaviour
         bc.enabled = false;//ìñÇΩÇËîªíËÇè¡Ç∑
         isSpell = true;
 
+        bg = Instantiate(spell_bg, new Vector3(0, 0, 0), Quaternion.identity);
         
         yield return null;
         bom.SetActive(true);
@@ -414,8 +416,33 @@ public class stageBoss_1 : MonoBehaviour
                     int ran_int = random.Next(-25, 25);
                     int ran_speed = random.Next(3, 10);
 
-                    Instantiate(phase2_bullets[1], transform.position, Quaternion.Euler(0, 0, (i / frame) + ran_int))
-                        .GetComponent<Straight_move>().moveSpeed = ran_speed * 0.01f;
+                    GameObject g_bullet = Instantiate(phase2_bullets[1], transform.position, Quaternion.Euler(0, 0, (i / frame) + ran_int));
+                    g_bullet.GetComponent<Straight_move>().moveSpeed = ran_speed * 0.01f;
+                    SpriteRenderer sr = g_bullet.GetComponent<SpriteRenderer>();
+                    switch (UnityEngine.Random.Range(0, 7))
+                    {
+                        case 0:
+                            sr.color = Color.white
+                                ; break;
+                        case 1:
+                            sr.color = Color.red
+                                ; break;
+                        case 2:
+                            //sr.color = Color.blue
+                                ; break;
+                        case 3:
+                            sr.color = Color.green
+                                ; break;
+                        case 4:
+                            sr.color = Color.cyan
+                                ; break;
+                        case 5:
+                            sr.color = Color.magenta
+                                ; break;
+                        case 6:
+                            sr.color = Color.yellow
+                                ; break;
+                    }//êFÇïœÇ¶ÇÈ
                 }
             }
             yield return null;
@@ -450,7 +477,31 @@ public class stageBoss_1 : MonoBehaviour
 
         for(int ii = 0; ii < gravity_int; ii++)
         {
-           Instantiate(phase2_bullets[3] , transform.position ,Quaternion.identity);
+           SpriteRenderer sr = Instantiate(phase2_bullets[3] , transform.position ,Quaternion.identity).GetComponent<SpriteRenderer>();
+            switch(UnityEngine.Random.Range(0, 7))
+            {
+                case 0:
+                    sr.color = Color.white
+                        ;break;
+                case 1:
+                    sr.color = Color.red
+                        ; break;
+                case 2:
+                    //sr.color = Color.blue
+                        ; break;
+                case 3:
+                    sr.color = Color.green
+                        ; break;
+                case 4:
+                    sr.color = Color.cyan
+                        ; break;
+                case 5:
+                    sr.color = Color.magenta
+                        ; break;
+                case 6:
+                    sr.color = Color.yellow
+                        ; break;
+            }//êFÇïœÇ¶ÇÈ
 
             yield return null; yield return null;//2frameë“Ç¬
         }

@@ -9,7 +9,7 @@ public class spell_bg_child : MonoBehaviour
     RectTransform Rect;
     private void Start()
     {
-        _canvas = GameObject.Find("Canvas_spell");
+        _canvas = transform.parent.gameObject;
         Rect = gameObject.GetComponent<RectTransform>();
     }
     private void Update()

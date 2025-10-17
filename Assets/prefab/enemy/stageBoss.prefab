@@ -102,6 +102,7 @@ MonoBehaviour:
   start_y_Pos: 3
   moveSpeed: 0.03
   HP_slider: {fileID: 2096499495895237190, guid: d2b51914f4642a2419d491f3ac3b9d65, type: 3}
+  spell_bg: {fileID: 7937774277853730731, guid: 548c89fa098817b4da053ecdfe947495, type: 3}
   phase_1_bullet:
   - {fileID: 3975430520059093986, guid: ad706e1511899884185f8e3f386d1efd, type: 3}
   - {fileID: 3769863703786932473, guid: 03da78e256a454a4782c74c4efb74909, type: 3}
